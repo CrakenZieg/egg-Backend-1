@@ -4,7 +4,7 @@ esa frase es una ‘A’. Si la primera letra es una ‘A’, se deberá de imp
 mensaje por pantalla que diga “CORRECTO”, en caso contrario, se deberá imprimir 
 “INCORRECTO”. Nota: investigar la función Substring y equals() de Java.
 */
-package ejercicios;
+package practica;
 
 import java.util.Scanner;
 
@@ -16,9 +16,9 @@ public class Ejercicio4 {
         Scanner sc = new Scanner(System.in);
         
         System.out.println("Ingrese la frase: ");
-        frase = sc.nextLine();
+        frase = sc.next();
         
-        if(frase.substring(0, 0).equals("A")){
+        if(frase.substring(0,1).equals("A")){
             System.out.println("Correcto");
         } else {
             System.out.println("Incorrecto");

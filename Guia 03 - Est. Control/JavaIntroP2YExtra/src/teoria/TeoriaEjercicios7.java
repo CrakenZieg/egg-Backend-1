@@ -10,7 +10,7 @@ El programa debe mostrar lo siguiente:
     Si no se cumple ninguno de los valores anteriores mostrar el mensaje “No existe un valor válido para tipo de bomba”
 */
 
-package ejercicios;
+package teoria;
 
 import java.util.Scanner;
 

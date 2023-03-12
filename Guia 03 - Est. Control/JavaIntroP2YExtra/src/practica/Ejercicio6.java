@@ -15,7 +15,7 @@ Menu
 5 salir 
 elija opcion:
 */
-package ejercicios;
+package practica;
 
 import java.util.Scanner;
 
@@ -38,7 +38,7 @@ public class Ejercicio6 {
             System.out.println("MENU");
             System.out.println("1. Sumar");
             System.out.println("2. Restar");
-            System.out.println("3.Multiplicar");
+            System.out.println("3. Multiplicar");
             System.out.println("4. Dividir");
             System.out.println("5. Salir");
             System.out.println("Elija una opcion:");
@@ -64,7 +64,7 @@ public class Ejercicio6 {
                 case 5:
                     String respuesta;
                     System.out.println("¿Está seguro que desea salir del programa (S/N)?");
-                    respuesta = sc.nextLine().toUpperCase();
+                    respuesta = sc.next().toUpperCase();
                     if(respuesta.equals("S")){
                         System.out.println("Hasta luego!");
                     } else {

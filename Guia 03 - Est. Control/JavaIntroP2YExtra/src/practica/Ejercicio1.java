@@ -1,7 +1,7 @@
 /*
 Crear un programa que dado un número determine si es par o impar.
  */
-package ejercicios;
+package practica;
 
 import java.util.Scanner;
 

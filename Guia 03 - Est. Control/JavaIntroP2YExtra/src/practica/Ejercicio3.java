@@ -4,7 +4,7 @@ largo. Si el usuario ingresa una frase o palabra de 8 de largo se deberá de
 imprimir un mensaje por pantalla que diga “CORRECTO”, en caso contrario, se 
 deberá imprimir “INCORRECTO”. Nota: investigar la función Lenght() en Java.
 */
-package ejercicios;
+package practica;
 
 import java.util.Scanner;
 

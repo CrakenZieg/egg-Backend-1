@@ -6,7 +6,7 @@ número ingresado seguido de tantos asteriscos como indique su valor. Por ejempl
 11 ***********
 2 **
  */
-package ejercicios;
+package teoria;
 
 import java.util.Scanner;
 
@@ -18,11 +18,11 @@ public class TeoriaEjercicios10 {
         numeros = new int[4];
         
         for (int i = 0; i < numeros.length; i++) {
-            System.out.println("Ingrese los numeros a graficar: ");
+            System.out.println("Ingrese el "+(i+1)+"° numero a graficar: ");
             numeros[i]=sc.nextInt();
         }
         for (int i = 0; i < numeros.length; i++) {
-            System.out.println(numeros[i]+" ");
+            System.out.print(numeros[i]+" ");
             for (int j = 0; j < numeros[i]; j++) {
                 System.out.print("*");
             }

@@ -119,17 +119,17 @@ public class JavaIntroP2YExtra {
                             break;
                         }
                         case 5 -> {
-                            Ejercicio5 ejercicio5 = new Ejercicio5();
+                            ExtraEjercicio5 ejercicio5 = new ExtraEjercicio5();
                             ejercicio5.ejercicio();
                             break;
                         }
                         case 6 -> {
-                            Ejercicio6 ejercicio6 = new Ejercicio6();
+                            ExtraEjercicio6 ejercicio6 = new ExtraEjercicio6();
                             ejercicio6.ejercicio();
                             break;
                         }
                         case 7 -> {
-                            Ejercicio7 ejercicio7 = new Ejercicio7();
+                            ExtraEjercicio7 ejercicio7 = new ExtraEjercicio7();
                             ejercicio7.ejercicio();
                             break;
                         }

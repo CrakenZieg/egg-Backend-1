@@ -13,10 +13,17 @@ public class JavaIntroP2YExtra {
         int opcionB;
         Scanner sc = new Scanner(System.in);
         do {
-            System.out.println("Ingrese el tipo de ejercicio (T, P, E):");
+            System.out.println("------------------------------------------");
+            System.out.println("Ingrese el tipo de ejercicio ('T'eorico, 'P'ractico, 'E'xtra, 'S'alir):");
             opcionA = sc.next().toUpperCase();
-            System.out.println("Ingrese el número del ejercicio a mostrar (T:6-10, P:1-8, E:1-14, 0 salir): ");
-            opcionB = sc.nextInt();
+            if(!opcionA.equals("S")){
+                System.out.println("Ingrese el número del ejercicio a mostrar (T:6-10, P:1-8, E:1-14, 0 salir): ");
+                opcionB = sc.nextInt();
+                System.out.println("------------------------------------------");
+            } else {
+                opcionB=0;
+                System.out.println("------------------------------------------");
+            }
             switch (opcionA){
                 case "T" ->{
                     switch (opcionB){
@@ -43,9 +50,6 @@ public class JavaIntroP2YExtra {
                         case 10 -> {
                             TeoriaEjercicios10 teoriaEjercicios10 = new TeoriaEjercicios10();
                             teoriaEjercicios10.ejercicio();
-                            break;
-                        }
-                        case 0 -> {
                             break;
                         }
                     }
@@ -134,8 +138,38 @@ public class JavaIntroP2YExtra {
                             break;
                         }
                         case 8 -> {
-                            Ejercicio8 ejercicio8 = new Ejercicio8();
+                            ExtraEjercicio8 ejercicio8 = new ExtraEjercicio8();
                             ejercicio8.ejercicio();
+                            break;
+                        }
+                        case 9 -> {
+                            ExtraEjercicio9 ejercicio9 = new ExtraEjercicio9();
+                            ejercicio9.ejercicio();
+                            break;
+                        }
+                        case 10 -> {
+                            ExtraEjercicio10 ejercicio10 = new ExtraEjercicio10();
+                            ejercicio10.ejercicio();
+                            break;
+                        }
+                        case 11 -> {
+                            ExtraEjercicio11 ejercicio11 = new ExtraEjercicio11();
+                            ejercicio11.ejercicio();
+                            break;
+                        }
+                        case 12 -> {
+                            ExtraEjercicio12 ejercicio12 = new ExtraEjercicio12();
+                            ejercicio12.ejercicio();
+                            break;
+                        }
+                        case 13 -> {
+                            ExtraEjercicio13 ejercicio13 = new ExtraEjercicio13();
+                            ejercicio13.ejercicio();
+                            break;
+                        }
+                        case 14 -> {
+                            ExtraEjercicio14 ejercicio14 = new ExtraEjercicio14();
+                            ejercicio14.ejercicio();
                             break;
                         }
                     }

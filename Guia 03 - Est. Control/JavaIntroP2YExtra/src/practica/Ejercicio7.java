@@ -36,7 +36,7 @@ public class Ejercicio7 {
             ingreso = sc.nextLine();
             if (ingreso.equals(FDE)){
                 correctas++;
-            } else if (ingreso.length()!=5 || !ingreso.substring(0,1).equals(PRINCIPIO) || 
+            } else if (ingreso.length()>LARGO || !ingreso.substring(0,1).equals(PRINCIPIO) || 
                     !ingreso.substring(ingreso.length()-1).equals(FINAL)){
                 incorrectas++;
             } else {

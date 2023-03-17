@@ -5,13 +5,14 @@ más adelante.
  */
 package teoria;
 
-import java.util.Scanner;
-
 public class TeoriaEjercicios13 {
      
+    String[] equipo7 = new String[7];
+    
     public void ejercicio(){
         
-        Scanner sc = new Scanner(System.in);
+        System.out.println("Este ejercicio solo creaba un arreglo de tipo String "
+                + "y le da dimension 7, que es la cantidad de gente en el equipo");
         
     }
 }

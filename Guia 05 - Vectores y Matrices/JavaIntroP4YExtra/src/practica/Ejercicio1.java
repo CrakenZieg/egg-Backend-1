@@ -4,14 +4,15 @@ los muestre por pantalla en orden descendente
  */
 package practica;
 
-import java.util.Scanner;
-
 public class Ejercicio1 {
     
     public void ejercicio(){
         
-        Scanner sc = new Scanner(System.in);
+        int[] lista = new int[100];
+        
+        for (int i = 0; i < lista.length; i++) {
+            
+        }
         
     }
-    
 }

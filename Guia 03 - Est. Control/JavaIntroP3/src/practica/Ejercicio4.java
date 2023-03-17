@@ -42,7 +42,7 @@ public class Ejercicio4 {
         } else if (num%2==0) {
             primo = false;
         } else {
-            for (int i = 3; i < num; i+=2) {
+            for (int i = 3; i < Math.sqrt(num); i+=2) {
                 if (num%i==0){
                     primo = false;
                     break;

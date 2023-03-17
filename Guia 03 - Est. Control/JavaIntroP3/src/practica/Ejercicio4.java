@@ -35,10 +35,14 @@ public class Ejercicio4 {
     
         boolean primo;
         primo = false;
-        if (num == 1 || num == 2){
+        if (num == 1){
+            primo = false;
+        } else if (num == 2 || num == 3){
             primo = true;
+        } else if (num%2==0) {
+            primo = false;
         } else {
-            for (int i = 2; i < num; i++) {
+            for (int i = 3; i < num; i+=2) {
                 if (num%i==0){
                     primo = false;
                     break;

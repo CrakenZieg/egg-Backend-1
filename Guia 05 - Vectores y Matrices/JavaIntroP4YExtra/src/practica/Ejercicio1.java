@@ -8,11 +8,28 @@ public class Ejercicio1 {
     
     public void ejercicio(){
         
-        int[] lista = new int[100];
+        int[] arreglo = new int[100];
         
-        for (int i = 0; i < lista.length; i++) {
-            
+        llenar(arreglo);
+        mostrar(arreglo, -1);
+        //mostrar(arreglo, 1);
+        
+    }
+    
+    public void llenar(int[] arreglo){
+        for (int i = 0; i < arreglo.length; i++) {
+            arreglo[i] = i+1;
         }
-        
+    }
+
+    public void mostrar(int[] arreglo, int orden) {
+        //orden = 1 ascendente / -1 descendente
+        System.out.println("");
+        System.out.print("[ ");
+        for (int i = (orden==1?0:-(arreglo.length)); i < (orden==1?arreglo.length:0); i++) {
+            System.out.print(arreglo[(orden==1?i:-(i+1))]+" ");
+        }
+        System.out.print("]");
+        System.out.println("");
     }
 }

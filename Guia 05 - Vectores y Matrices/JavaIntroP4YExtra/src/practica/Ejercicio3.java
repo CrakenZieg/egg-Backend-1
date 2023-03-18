@@ -44,8 +44,16 @@ public class Ejercicio3 {
     
     public void llenar(int[] arreglo){
         Random rand = new Random();
+        int digi;
         for (int i = 0; i < arreglo.length; i++) {
-            arreglo[i] = rand.nextInt(15000);
+            digi = rand.nextInt(5);
+            switch (digi){
+                    case 0 -> arreglo[i] = rand.nextInt(9);
+                    case 1 -> arreglo[i] = rand.nextInt(99);
+                    case 2 -> arreglo[i] = rand.nextInt(999);
+                    case 3 -> arreglo[i] = rand.nextInt(9999);
+                    case 4 -> arreglo[i] = rand.nextInt(99999);
+            }
         }
     }
     

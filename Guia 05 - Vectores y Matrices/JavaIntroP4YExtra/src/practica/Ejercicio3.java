@@ -26,7 +26,6 @@ public class Ejercicio3 {
     }
     
     public void digitosArreglo(int[] arreglo, int[] digitos){
-    
         for (int i = 0; i < arreglo.length; i++) {
             digitos[digitos(arreglo[i])-1]+=1;
         }

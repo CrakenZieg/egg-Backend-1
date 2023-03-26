@@ -26,6 +26,38 @@ public class ExtraEjercicio7 {
     public void ejercicio(){
     
         Scanner sc = new Scanner(System.in);
+        int n;
+        System.out.println("Ingrese el termino a mostrar: ");
+        n = sc.nextInt();
+        int[] fibo = new int[n];
+        
+        for (int i = 1; i <= n; i++) {
+            fibo[i-1] = fibonacci(i);
+        }
+        
+        mostrarVector(fibo);
         
     }
+    
+    public int fibonacci(int n){
+    
+        if(n==1||n==2){
+            return 1;
+        } else {
+            return fibonacci(n-1)+fibonacci(n-2);
+        }
+    
+    }
+    
+    public void mostrarVector(int[] vector){
+        System.out.println("-----------------------------");
+        System.out.print("[ ");
+        for (int i = 0; i < vector.length; i++) {
+            System.out.print(vector[i]+" ");
+        }
+        System.out.print("]");
+        System.out.println("");
+        System.out.println("-----------------------------");
+    }
+    
 }

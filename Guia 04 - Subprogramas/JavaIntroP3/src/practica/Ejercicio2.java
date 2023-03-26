@@ -23,7 +23,7 @@ public class Ejercicio2 {
     
     public void ingreso(int n, Scanner sc){
     
-        String nombre, mayoria;
+        String nombre, mayoria, seguir;
         int edad;
         nombre = "";
         edad = 0;
@@ -44,6 +44,12 @@ public class Ejercicio2 {
             
             nombre = "";
             edad = 0;
+            
+            System.out.println("¿Quiere seguir ingresando (s/n)?");
+            seguir = sc.next().toLowerCase();
+            if(seguir.equals("n")){
+                break;
+            }
         }
         
         System.out.println("Saliendo del subprograma Ingreso()");

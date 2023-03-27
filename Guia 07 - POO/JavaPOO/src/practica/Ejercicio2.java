@@ -10,6 +10,7 @@ e) Método perimetro(): para calcular el perímetro (Perimetro=2*π*radio).
 
 package practica;
 
+import entidades.Circunferencia;
 import javapoo.*;
 import java.util.Scanner;
 
@@ -18,7 +19,21 @@ public class Ejercicio2 extends EjercicioModelo{
     @Override
     public void ejercicio(){
         
-        Scanner sc = new Scanner(System.in);
+        Circunferencia circ = crearCircunferencia();
+        
+        System.out.println("La circunferencia tiene radio "+circ.getRadio());
+        System.out.println("La circunferencia tiene perimetro "+circ.perimetro());
+        System.out.println("La circunferencia tiene area "+circ.area());
         
     }
+    
+    public Circunferencia crearCircunferencia(){
+        double radio;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese el radio de la circunferencia: ");
+        radio = sc.nextDouble();
+        Circunferencia circ = new Circunferencia(radio);
+        return circ;
+    }
+    
 }

@@ -34,7 +34,7 @@ public class Ejercicio1 extends EjercicioModelo{
         
     }
         
-    public static void llenarLibro(Libro libro){
+    public void llenarLibro(Libro libro){
         Scanner sc = new Scanner(System.in); 
         System.out.println("Ingrese el ISBN:");
         libro.setISBN(sc.next());
@@ -46,7 +46,7 @@ public class Ejercicio1 extends EjercicioModelo{
         libro.setNumPags(sc.nextInt());
     }
     
-    public static Libro llenarLibro(){
+    public Libro llenarLibro(){
         String ISBN, titulo, autor; 
         int numPags;
         Scanner sc = new Scanner(System.in); 
@@ -62,11 +62,11 @@ public class Ejercicio1 extends EjercicioModelo{
         return libro;
     }
     
-    public static void mostrarLibro1(Libro libro){
+    public void mostrarLibro1(Libro libro){
         System.out.println(libro.toString());
     }
     
-    public static void mostrarLibro2(Libro libro){
+    public void mostrarLibro2(Libro libro){
         System.out.println("ISBN:");
         System.out.println(libro.getISBN());
         System.out.println("Titulo:");

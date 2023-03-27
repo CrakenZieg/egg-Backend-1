@@ -25,9 +25,31 @@ public class Operacion {
     public void setNumero2(double numero2) {
         this.numero2 = numero2;
     }
+        
+    public double sumar(){
+        return numero1+numero2;
+    }
     
+    public double restar(){
+        return numero1-numero2;
+    }
     
-    
+    public double multiplicar(){
+        if(numero1==0 || numero2==0){
+            System.out.println("Error: se intento multiplicar por 0");
+            return 0;
+        } else {
+            return numero1*numero2;
+        }
+    }
+    public double dividir(){
+        if(numero1==0 || numero2==0){
+            System.out.println("Error: se intento dividir por 0");
+            return 0;
+        } else {
+            return numero1/numero2;
+        }
+    }
 }
 
 /*

@@ -8,6 +8,7 @@ correspondientes.
 
 package extra;
 
+import entidades.Cancion;
 import javapoo.*;
 import java.util.Scanner;
 
@@ -17,6 +18,17 @@ public class ExtraEjercicio1 extends EjercicioModelo{
     public void ejercicio(){
         
         Scanner sc = new Scanner(System.in);
+        String autor, titulo;
+        
+        System.out.println("Crea una cancion!");
+        System.out.println("Ingresa el autor: ");
+        autor = sc.next();
+        System.out.println("Ingresa el titulo: ");
+        titulo = sc.next();
+        
+        Cancion cancion = new Cancion(autor, titulo);
+        
+        System.out.println(cancion.toString());
         
     }
 }

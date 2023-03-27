@@ -17,6 +17,7 @@ error se le informa al usuario. Si no, se hace la división y se devuelve el res
 
 package practica;
 
+import entidades.Operacion;
 import javapoo.*;
 import java.util.Scanner;
 
@@ -24,8 +25,77 @@ public class Ejercicio3 extends EjercicioModelo{
     
     @Override
     public void ejercicio(){
-        
         Scanner sc = new Scanner(System.in);
+        int opcion;
+        do {
+            System.out.println("Desea crear una operacion mediante setters(1) o por parametro(2)?");
+            System.out.println("(0 para salir)");
+            opcion = sc.nextInt();
+            if(opcion==1){
+                Operacion operacion = crearOperacionSet();
+                menu(operacion);
+            } else if (opcion == 2){
+                Operacion operacion = crearOperacionParam();
+                menu(operacion);
+            }
+        } while (opcion!=0);        
+    }
         
+    public void menu(Operacion operacion){
+        Scanner sc = new Scanner(System.in);
+        int opcion;
+        do {
+            System.out.println("-----------------------");
+            System.out.println("1. Suma");
+            System.out.println("2. Resta");
+            System.out.println("3. Multiplicacion");
+            System.out.println("4. Division");
+            System.out.println("5. Mostrar los valores");
+            System.out.println("6. Modificar los valores");
+            System.out.println("0. Salir");
+            System.out.println("Que operacion desea realizar?");
+            opcion = sc.nextInt();
+            switch (opcion) {
+                case 1 -> System.out.println("Resultado: "+operacion.sumar());
+                case 2 -> System.out.println("Resultado: "+operacion.restar());
+                case 3 -> System.out.println("Resultado: "+operacion.multiplicar());
+                case 4 -> System.out.println("Resultado: "+operacion.dividir());
+                case 5 -> {
+                    System.out.println("Primer numero: "+operacion.getNumero1());
+                    System.out.println("Segundo numero: "+operacion.getNumero2());
+                }
+                case 6 -> {
+                    System.out.println("Ingrese el primer numero: ");
+                    operacion.setNumero1(sc.nextDouble());
+                    System.out.println("Ingrese el segundo numero: ");
+                    operacion.setNumero2(sc.nextDouble());
+                }
+            } 
+            System.out.println("-----------------------");
+        } while (opcion!=0);
+    }
+    
+    public Operacion crearOperacionSet(){
+        Operacion operacion = new Operacion();
+        Scanner sc = new Scanner(System.in);
+        double numero1, numero2;
+        System.out.println("Ingrese el primer numero:");
+        numero1 = sc.nextDouble();
+        operacion.setNumero1(numero1);
+        System.out.println("Ingrese el segundo numero:");
+        numero2 = sc.nextDouble();
+        operacion.setNumero2(numero2);
+        return operacion;
+    }
+    
+    public Operacion crearOperacionParam(){
+        Scanner sc = new Scanner(System.in);
+        double numero1, numero2;
+        System.out.println("Ingrese el primer numero:");
+        numero1 = sc.nextDouble();
+        System.out.println("Ingrese el segundo numero:");
+        numero2 = sc.nextDouble();
+        Operacion operacion = new Operacion(numero1, numero2);
+        return operacion;
     }
 }

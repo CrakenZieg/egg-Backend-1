@@ -16,7 +16,7 @@ public class JavaPOO {
             System.out.println("Ingrese el tipo de ejercicio ('T'eorico, 'P'ractico, 'E'xtra, 'S'alir):");
             opcionA = sc.next().toUpperCase();
             if(!opcionA.equals("S")){
-                System.out.println("Ingrese el número del ejercicio a mostrar (T:1, P:1-4, E:1-2, 0 salir): ");
+                System.out.println("Ingrese el número del ejercicio a mostrar (T:1, P:1-4, E:1-7, 0 salir): ");
                 opcionB = sc.nextInt();
                 System.out.println("------------------------------------------");
             } else {
@@ -69,6 +69,11 @@ public class JavaPOO {
                         case 2 -> {
                             ExtraEjercicio2 ejercicio2 = new ExtraEjercicio2();
                             ejercicio2.ejercicio();
+                            break;
+                        }
+                        case 3 -> {
+                            ExtraEjercicio3 ejercicio3 = new ExtraEjercicio3();
+                            ejercicio3.ejercicio();
                             break;
                         }
                     }

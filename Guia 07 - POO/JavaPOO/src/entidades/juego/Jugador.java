@@ -6,19 +6,20 @@ import java.util.Random;
 public class Jugador {
     
     Random rand = new Random();
-    private int num, adivinar, secreto, max, min;
+    private int adivinar, secreto, max, min;
+    private String nombre;
     
-    public Jugador(int num, int max, int min){
-        this.num = num;
+    public Jugador(String nombre, int max, int min){
+        this.nombre = nombre;
         this.max = max;
         this.min = min;
     }
 
-    public int getNum() {
-        return num;
+    public String getNombre() {
+        return nombre;
     }
-    public void setNum(int num) {
-        this.num = num;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     public void intSecreto(){
@@ -64,7 +65,7 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return "Jugador{"+this.getNum()+"}";
+        return this.getNombre();
     }
     
 }

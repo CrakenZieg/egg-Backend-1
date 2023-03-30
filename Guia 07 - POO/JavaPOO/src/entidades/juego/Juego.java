@@ -9,7 +9,7 @@ public class Juego {
     private int rondas, intentos, max, min;
     private int[] victorias = {0,0};
     private int[] intentosTotales = {0,0};
-    private Jugador jugador1, jugador2;
+    private String jugador1, jugador2;
     
     public Juego(){}
     
@@ -23,73 +23,53 @@ public class Juego {
         max = sc.nextInt();
         System.out.println("Ingrese el numero minimo: ");
         min = sc.nextInt();
+        System.out.println("Ingrese el nombre del primer jugador: ");
+        jugador1 = sc.next();
+        System.out.println("Ingrese el nombre del segundo jugador: ");
+        jugador2 = sc.next();
         
-        jugador1 = new Jugador(1, max, min);
-        jugador2 = new Jugador(2, max, min);
-        
-        juego(jugador1, jugador2);
+        juego();
         
     }
     
-    public void juego(Jugador jugador1, Jugador jugador2){
+    public void juego(){
         System.out.println("Iniciando juego!");
         for (int i = 0; i < rondas; i++) {
             System.out.println("Iniciando ronda!");
-            int[] ronda = ronda(jugador1,jugador2);
+            Ronda rondaJ = new Ronda(jugador1, jugador2, intentos, max, min);
+            int[] ronda = rondaJ.ronda();
             if (ronda[0]==2){
                 victorias[1]+=1;
-                System.out.println("Gano el jugador2 en "+ronda[1]+" intentos!");
+                System.out.println("Gano "+ jugador2 +" en "+ronda[1]+" intentos!");
                 intentosTotales[1]+=ronda[1];
             } else {
-                victorias[0]+=1;
-                System.out.println("Gano el jugador1!");
+                System.out.println(jugador1 +" mantuvo su numero secreto!");
             }
-            ronda = ronda(jugador2,jugador1);
+            rondaJ = new Ronda(jugador2, jugador1, intentos, max, min);
+            ronda = rondaJ.ronda();
             if (ronda[0]==2){
                 victorias[0]+=1;
-                System.out.println("Gano el jugador1 en "+ronda[1]+" intentos!");
+                System.out.println("Gano "+ jugador1 +" en "+ronda[1]+" intentos!");
                 intentosTotales[0]+=ronda[1];
             } else {
-                victorias[1]+=1;
-                System.out.println("Gano el jugador2!");
+                System.out.println(jugador2 +" mantuvo su numero secreto!");
             }
         }
         if(victorias[0]>victorias[1]){
-            System.out.println("Gano el jugador1 con "+victorias[0]+" en "+intentosTotales[0]+" intentos");
-            System.out.println("El jugador2 estuvo cerca con "+ victorias[1]+" en "+intentosTotales[1]+" intentos");
+            System.out.println("Gano "+ jugador1 +" con "+victorias[0]+" en "+intentosTotales[0]+" intentos");
+            System.out.println(jugador2 +" estuvo cerca con "+ victorias[1]+" en "+intentosTotales[1]+" intentos");
+        } else if(victorias[1]>victorias[0]){
+            System.out.println("Gano "+ jugador2 +" con "+ victorias[1]+" en "+intentosTotales[1]+" intentos");
+            System.out.println(jugador1 +" estuvo cerca con "+ victorias[0]+" en "+intentosTotales[0]+" intentos");
+        } else if(intentosTotales[0]<intentosTotales[1]){
+            System.out.println("Gano "+ jugador1 +" con "+victorias[0]+" en "+intentosTotales[0]+" intentos");
+            System.out.println(jugador2 +" estuvo cerca con "+ victorias[1]+" en "+intentosTotales[1]+" intentos");
+        } else if(intentosTotales[1]<intentosTotales[0]){
+            System.out.println("Gano "+ jugador2 +" con "+ victorias[1]+" en "+intentosTotales[1]+" intentos");
+            System.out.println(jugador1 +" estuvo cerca con "+ victorias[0]+" en "+intentosTotales[0]+" intentos");
         } else {
-            System.out.println("Gano el jugador2 con "+ victorias[1]+" en "+intentosTotales[1]+" intentos");
-            System.out.println("El jugador1 estuvo cerca con "+ victorias[0]+" en "+intentosTotales[0]+" intentos");
+            System.out.println(jugador1+" y "+jugador2+" empataron!");
         }
-    }
-    
-    public int[] ronda(Jugador jugador1, Jugador jugador2){
-        int[] retorno = {1,0};
-        jugador1.intSecreto();
-        System.out.println("El numero secreto de "+ jugador1 + " es "+jugador1.getSecreto());
-        for (int i = 0; i < intentos; i++) {
-            retorno[1]+=1;
-            jugador2.adivinar();
-            System.out.println("El "+jugador2+" supone "+ jugador2.getAdivinar());
-            if(jugador2.getAdivinar()==jugador1.getSecreto()){
-                System.out.println(jugador2+" acerto!");
-                retorno[0] = 2;
-                jugador1.jugadorReset(max,min);
-                jugador2.jugadorReset(max,min);
-                return retorno;
-            } else {
-                if(jugador2.getAdivinar()>jugador1.getSecreto()){
-                    jugador2.setMax(jugador2.getAdivinar()-1);
-                    System.out.println(jugador2+" se paso de largo!");
-                } else {
-                    jugador2.setMin(jugador2.getAdivinar()+1);
-                    System.out.println(jugador2+" se fue a menos!");
-                }
-            }
-        }
-        jugador1.jugadorReset(max,min);
-        jugador2.jugadorReset(max,min);
-        return retorno;
     }
          
 }

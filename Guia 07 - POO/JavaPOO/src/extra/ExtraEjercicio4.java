@@ -8,6 +8,7 @@ en la cocina.
 package extra;
 
 import entidades.*;
+import java.util.ArrayList;
 import javapoo.*;
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public class ExtraEjercicio4 extends EjercicioModelo{
     public void ejercicio(){
         
         Scanner sc = new Scanner(System.in);
-       
         
+     
     }
 }

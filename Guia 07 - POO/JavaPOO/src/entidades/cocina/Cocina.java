@@ -28,7 +28,7 @@ public class Cocina {
                 case "s" -> opcion = "Sarten";
                 case "p" -> opcion = "Plancha";
                 case "h" -> opcion = "Horno";
-                case "v" -> {opcion = "Hervor";}   
+                case "v" -> opcion = "Hervor";  
             }
             receta.setTipoCoccion(opcion);
         }

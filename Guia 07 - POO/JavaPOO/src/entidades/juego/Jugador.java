@@ -15,11 +15,20 @@ public class Jugador {
         this.min = min;
     }
 
-    public String getNombre() {
-        return nombre;
+    public boolean esSecreto(int adivinanza){
+        return this.getSecreto()==adivinanza;
     }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    
+    public boolean secretoGrande(int adivinanza){
+        return this.getSecreto()>adivinanza;
+    }
+    
+    public void tePasaste(){
+        setMax(getAdivinar()-1);
+    }
+    
+    public void teFalto(){
+        setMin(getAdivinar()+1);
     }
     
     public void intSecreto(){
@@ -30,9 +39,11 @@ public class Jugador {
         this.setAdivinar(rand.nextInt(min, max+1));
     }
     
-    public void jugadorReset(int max, int min){
-        this.setMax(max);
-        this.setMin(min);
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getAdivinar() {

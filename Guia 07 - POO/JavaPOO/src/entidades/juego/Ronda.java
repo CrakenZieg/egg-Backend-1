@@ -50,16 +50,16 @@ public class Ronda {
             retorno[1]+=1;
             jugador2.adivinar();
             System.out.println("El "+jugador2+" supone "+ jugador2.getAdivinar());
-            if(jugador2.getAdivinar()==jugador1.getSecreto()){
+            if(jugador1.esSecreto(jugador2.getAdivinar())){
                 System.out.println(jugador2+" acerto!");
                 retorno[0] = 2;
                 return retorno;
             } else {
-                if(jugador2.getAdivinar()>jugador1.getSecreto()){
-                    jugador2.setMax(jugador2.getAdivinar()-1);
+                if(jugador1.secretoGrande(jugador2.getAdivinar())){
+                    jugador2.tePasaste();
                     System.out.println(jugador2+" se paso de largo!");
                 } else {
-                    jugador2.setMin(jugador2.getAdivinar()+1);
+                    jugador2.teFalto();
                     System.out.println(jugador2+" se fue a menos!");
                 }
             }

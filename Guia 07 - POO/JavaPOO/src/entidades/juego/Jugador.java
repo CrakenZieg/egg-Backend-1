@@ -19,8 +19,8 @@ public class Jugador {
         return this.getSecreto()==adivinanza;
     }
     
-    public boolean secretoGrande(int adivinanza){
-        return this.getSecreto()>adivinanza;
+    public boolean secretoChico(int adivinanza){
+        return this.getSecreto()<adivinanza;
     }
     
     public void tePasaste(){

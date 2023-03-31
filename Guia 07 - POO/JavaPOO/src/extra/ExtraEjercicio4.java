@@ -7,18 +7,39 @@ en la cocina.
 
 package extra;
 
-import entidades.*;
-import java.util.ArrayList;
+import entidades.cocina.Cocina;
 import javapoo.*;
 import java.util.Scanner;
 
 public class ExtraEjercicio4 extends EjercicioModelo{
     
+    Scanner sc = new Scanner(System.in);
     @Override
     public void ejercicio(){
-        
-        Scanner sc = new Scanner(System.in);
-        
-     
+        menu();
     }
+    
+    public void menu(){
+    
+        int opcion;
+        Cocina recetario = new Cocina();
+        do {
+            System.out.println("Ingrese la opcion a elegir:");
+            System.out.println("1. Agregar receta");
+            System.out.println("2. Listar recetas");
+            System.out.println("3. Buscar por nombre");
+            System.out.println("4. Buscar por ingredientes");
+            System.out.println("0. Salir");
+            opcion = sc.nextInt();
+            switch (opcion){
+                case 1 -> {recetario.agregarReceta();}
+                case 2 -> {recetario.listar(recetario.getRecetas());}
+                case 3 -> {recetario.buscarPorNombre();}
+                case 4 -> {recetario.buscarIngredientes();}
+                case 0 -> {System.out.println("Gracias por usar nuestro sistema!");}
+            }
+        } while (opcion!=0);
+        
+    }
+    
 }

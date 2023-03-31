@@ -76,6 +76,26 @@ public class JavaPOO {
                             ejercicio3.ejercicio();
                             break;
                         }
+                        case 4 -> {
+                            ExtraEjercicio4 ejercicio4 = new ExtraEjercicio4();
+                            ejercicio4.ejercicio();
+                            break;
+                        }
+                        case 5 -> {
+                            ExtraEjercicio5 ejercicio5 = new ExtraEjercicio5();
+                            ejercicio5.ejercicio();
+                            break;
+                        }
+                        case 6 -> {
+                            ExtraEjercicio6 ejercicio6 = new ExtraEjercicio6();
+                            ejercicio6.ejercicio();
+                            break;
+                        }
+                        case 7 -> {
+                            ExtraEjercicio7 ejercicio7 = new ExtraEjercicio7();
+                            ejercicio7.ejercicio();
+                            break;
+                        }
                     }
                     break;
                 }

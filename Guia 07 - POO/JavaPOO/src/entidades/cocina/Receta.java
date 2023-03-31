@@ -8,7 +8,7 @@ public class Receta {
     private String nombre, tipoCoccion;
     private int tiempoPreparacion;
     private boolean coccion;
-    private ArrayList<String> ingredientes;
+    private ArrayList<String> ingredientes = new ArrayList<String>();
 
     public Receta() {
     }
@@ -51,17 +51,30 @@ public class Receta {
     public ArrayList<String> getIngredientes() {
         return ingredientes;
     }
+    
+    public String concatIngredientes(){
+        String retorno = "";
+        for(String ingrediente : getIngredientes()){
+            retorno = retorno.concat(ingrediente+", \n");
+        }
+        return retorno;
+    }
 
     public void agregarIngrediente(String ingrediente){
-        this.ingredientes.add(ingrediente);
+        this.ingredientes.add(ingrediente.toLowerCase());
     }
     
     public boolean tieneIngrediente(String ingrediente){
-        return this.ingredientes. contains(ingrediente);
+        return this.ingredientes.contains(ingrediente.toLowerCase());
     }
     
     public boolean tieneIngredientes(ArrayList<String> ingredientes){
-        return this.ingredientes. containsAll(ingredientes);
+        return this.ingredientes.containsAll(ingredientes);
+    }
+    
+    @Override
+    public String toString(){
+        return "---------\n"+this.getNombre()+":\n---------\nTipo de coccion: \n"+this.getTipoCoccion()+"\nTiempo de preparacion: \n"+this.getTiempoPreparacion()+"\nIngredientes: \n"+this.concatIngredientes()+"\n---------";
     }
     
 }

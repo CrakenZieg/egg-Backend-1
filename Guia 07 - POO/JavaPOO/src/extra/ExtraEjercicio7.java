@@ -8,15 +8,15 @@ package extra;
 
 import entidades.*;
 import javapoo.*;
-import java.util.Scanner;
 
 public class ExtraEjercicio7 extends EjercicioModelo{
     
     @Override
     public void ejercicio(){
         
-        Scanner sc = new Scanner(System.in);
-       
+        System.out.println("Creando un rectangulo de lado1=4 y lado2=6");
+        RectanguloE rectangulo1 = new RectanguloE(4,6);
+        System.out.println("El area de dicho rectangulo es: "+ rectangulo1.calcular_area());
         
     }
 }

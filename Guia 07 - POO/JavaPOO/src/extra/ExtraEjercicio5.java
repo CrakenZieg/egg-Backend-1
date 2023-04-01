@@ -17,7 +17,16 @@ public class ExtraEjercicio5 extends EjercicioModelo{
     public void ejercicio(){
         
         Scanner sc = new Scanner(System.in);
-       
+        Cuenta cuenta = new Cuenta();
         
+        System.out.println("Cuenta creada!");
+        System.out.println("Ingrese Titular:");
+        cuenta.setTitular(sc.next());
+        System.out.println("Ingrese fondos:");
+        cuenta.agregar_dinero(sc.nextDouble());
+        System.out.println(cuenta.toString());
+        System.out.println("Retire fondos:");
+        cuenta.retirar_dinero(sc.nextDouble());
+       
     }
 }

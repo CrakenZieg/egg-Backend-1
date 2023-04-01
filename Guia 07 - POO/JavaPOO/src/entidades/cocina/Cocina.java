@@ -29,11 +29,12 @@ public class Cocina {
         receta.setNombre(opcion);
         System.out.println("Requiere coccion? (S/N)");
         opcion = sc.next().toLowerCase();
-        receta.setCoccion(opcion.equals("s")?true:false);
+        receta.setCoccion(opcion.equals("s"));
         if(receta.isCoccion()){
-            System.out.println("Ingresa el tipo de coccion: 'S'arten, 'P'lancha, 'H'orno, Her'v'or");
+            System.out.println("Ingresa el tipo de coccion: 'F'reir, S'arten, 'P'lancha, 'H'orno, Her'v'or");
             opcion = sc.next().toLowerCase();
             switch (opcion){
+                case "f" -> opcion = "frito";
                 case "s" -> opcion = "Sarten";
                 case "p" -> opcion = "Plancha";
                 case "h" -> opcion = "Horno";

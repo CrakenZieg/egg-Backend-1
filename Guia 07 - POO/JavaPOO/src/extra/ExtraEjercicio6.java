@@ -9,15 +9,16 @@ package extra;
 
 import entidades.*;
 import javapoo.*;
-import java.util.Scanner;
 
 public class ExtraEjercicio6 extends EjercicioModelo{
     
     @Override
     public void ejercicio(){
         
-        Scanner sc = new Scanner(System.in);
-       
+        Empleado empleado1 = new Empleado("Carlos", 90, 7800);
+        System.out.println(empleado1.toString());
+        Empleado empleado2 = new Empleado("Carlitos", 23, 150);
+        System.out.println(empleado2.toString());
         
     }
 }

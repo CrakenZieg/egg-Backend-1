@@ -5,7 +5,7 @@ import java.util.Random;
 import javapoo.EjercicioModelo;
 import entidades.Persona;
 
-public class EjercicioPersona extends EjercicioModelo {
+public class EjercicioPersona implements EjercicioModelo {
     
     @Override
     public void ejercicio(){

@@ -11,7 +11,7 @@ import entidades.*;
 import javapoo.*;
 import java.util.Scanner;
 
-public class ExtraEjercicio5 extends EjercicioModelo{
+public class ExtraEjercicio5 implements EjercicioModelo{
     
     @Override
     public void ejercicio(){

@@ -12,7 +12,7 @@ import entidades.Libro;
 import javapoo.*;
 import java.util.Scanner;
 
-public class Ejercicio1 extends EjercicioModelo{
+public class Ejercicio1 implements EjercicioModelo{
     
     @Override
     public void ejercicio(){

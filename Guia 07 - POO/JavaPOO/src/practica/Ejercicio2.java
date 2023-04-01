@@ -14,7 +14,7 @@ import entidades.Circunferencia;
 import javapoo.*;
 import java.util.Scanner;
 
-public class Ejercicio2 extends EjercicioModelo{
+public class Ejercicio2 implements EjercicioModelo{
     
     @Override
     public void ejercicio(){

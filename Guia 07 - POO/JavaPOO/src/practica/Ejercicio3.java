@@ -21,7 +21,7 @@ import entidades.Operacion;
 import javapoo.*;
 import java.util.Scanner;
 
-public class Ejercicio3 extends EjercicioModelo{
+public class Ejercicio3 implements EjercicioModelo{
     
     @Override
     public void ejercicio(){

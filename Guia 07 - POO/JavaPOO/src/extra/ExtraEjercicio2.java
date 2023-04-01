@@ -13,7 +13,7 @@ import entidades.Puntos;
 import javapoo.*;
 import java.util.Scanner;
 
-public class ExtraEjercicio2 extends EjercicioModelo{
+public class ExtraEjercicio2 implements EjercicioModelo{
     
     @Override
     public void ejercicio(){

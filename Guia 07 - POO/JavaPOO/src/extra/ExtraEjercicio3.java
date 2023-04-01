@@ -13,7 +13,7 @@ package extra;
 import entidades.juego.Juego;
 import javapoo.*;
 
-public class ExtraEjercicio3 extends EjercicioModelo{
+public class ExtraEjercicio3 implements EjercicioModelo{
     
     @Override
     public void ejercicio(){

@@ -11,7 +11,7 @@ import entidades.cocina.Cocina;
 import javapoo.*;
 import java.util.Scanner;
 
-public class ExtraEjercicio4 extends EjercicioModelo{
+public class ExtraEjercicio4 implements EjercicioModelo{
     
     Scanner sc = new Scanner(System.in);
     @Override

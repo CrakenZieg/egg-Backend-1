@@ -3,11 +3,9 @@ package javapoo;
 
 import java.util.Scanner;
 
-public class EjercicioModelo {
+public interface EjercicioModelo {
     
-    public void ejercicio(){
-        
-        Scanner sc = new Scanner(System.in);
-        
-    }
+    Scanner sc = new Scanner(System.in);
+    public void ejercicio();
+    
 }

@@ -15,7 +15,7 @@ import entidades.Rectangulo;
 import javapoo.*;
 import java.util.Scanner;
 
-public class Ejercicio4 extends EjercicioModelo{
+public class Ejercicio4 implements EjercicioModelo{
     
     @Override
     public void ejercicio(){

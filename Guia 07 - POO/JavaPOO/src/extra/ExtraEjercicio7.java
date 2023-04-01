@@ -9,7 +9,7 @@ package extra;
 import entidades.*;
 import javapoo.*;
 
-public class ExtraEjercicio7 extends EjercicioModelo{
+public class ExtraEjercicio7 implements EjercicioModelo{
     
     @Override
     public void ejercicio(){

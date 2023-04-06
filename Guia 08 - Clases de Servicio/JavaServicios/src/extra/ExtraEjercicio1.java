@@ -2,15 +2,64 @@
 package extra;
 
 import javaservicios.EjercicioModelo;
+import static service.RaicesService.*;
+import entities.Raices;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class ExtraEjercicio1 implements EjercicioModelo {
 
-    
     @Override
     public void ejercicio() {
         
+        int n;
+        Random rand = new Random();
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        ArrayList<Raices> raizDoble = new ArrayList<Raices>();
+        ArrayList<Raices> raizSimple = new ArrayList<Raices>();
+        ArrayList<Raices> raizComp = new ArrayList<Raices>();
+        System.out.println("Cuantos polinomios de grado 2 desea crear (x3)?");
+        n = sc.nextInt();
+        for (int i = 0; i < n; i++) {
+            double a, b, c, a1, b1, c1, a2, b2, c2;
+            a = (double)rand.nextInt(-50, 50);
+            b = (double)rand.nextInt(-50, 50);
+            c = (double)rand.nextInt(-50, 50);
+            a1 = a;
+            b1 = -2*a*b;
+            c1 = a*b*b;
+            a2 = a;
+            b2 = -a*(c+b);
+            c2 = a*b*c;
+            Raices[] polinomios = new Raices[3];
+            polinomios[0] = new Raices(a,b,c);
+            polinomios[1] = new Raices(a1,b1,c1);
+            polinomios[2] = new Raices(a2,b2,c2);
+            for(Raices pol: polinomios){
+                if(tieneRaices(pol)){
+                    raizDoble.add(pol);
+                } else if (tieneRaiz(pol)){
+                    raizSimple.add(pol);
+                } else {
+                    raizComp.add(pol);
+                }
+            }
+        }
+        System.out.println("Creados los polinomios!");
+        System.out.println("Los polinomios con 2 raices son: " + raizDoble.size());
+        for(Raices pol: raizDoble){
+            calcular(pol);
+        }
+        System.out.println("Los polinomios con una raiz son: " + raizSimple.size());
+        for(Raices pol: raizSimple){
+            calcular(pol);
+        }
+        System.out.println("Los polinomios con raices complejas son: " + raizComp.size());
+        for(Raices pol: raizComp){
+            System.out.println(pol);
+        }
     }
-    
 }
 /*
 Vamos a realizar una clase llamada Raices, donde representaremos los valores de 

@@ -1,45 +1,38 @@
 
-package extra;
+package entities;
 
-import javaservicios.EjercicioModelo;
-import entities.NIF;
-import java.util.ArrayList;
-import java.util.Scanner;
-import static service.NIFService.*;
-
-public class ExtraEjercicio2 implements EjercicioModelo {
+public class NIF {
     
-    @Override
-    public void ejercicio() {
-        
-        Scanner sc = new Scanner(System.in).useDelimiter("\n");
-        ArrayList<NIF> nifes = new ArrayList<NIF>();
-        int opcion;
-        do{
-            System.out.println("--------------------------");
-            System.out.println("Ingrese una opcion:");
-            System.out.println("1. Crear NIF");
-            System.out.println("2. Mostrar NIF almacenados");
-            System.out.println("0. Salir");
-            opcion = sc.nextInt();
-            switch (opcion){
-                case 1 -> {nifes.add(crearNIF());}
-                case 2 -> {
-                    System.out.println("--------------------------");
-                    System.out.println("NIF almacenados:");
-                    for(NIF nif: nifes){
-                        mostrar(nif);
-                    }
-                }
-                case 0 -> {
-                    System.out.println("--------------------------");
-                    System.out.println("Gracias por usar nuestros servicios!");
-                }
-            }
-        } while (opcion!=0);
-        
+    private long DNI;
+    private String letra;
+
+    public NIF() {
     }
-    
+
+    public NIF(long DNI, String letra) {
+        this.DNI = DNI;
+        this.letra = letra;
+    }
+
+    public long getDNI() {
+        return DNI;
+    }
+    public void setDNI(long DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getLetra() {
+        return letra;
+    }
+    public void setLetra(String letra) {
+        this.letra = letra;
+    }
+
+    @Override
+    public String toString() {
+        return DNI + "-" + letra;
+    }
+
 }
 /*
 Dígito Verificador. Crear una clase NIF que se usará para mantener DNIs con su 

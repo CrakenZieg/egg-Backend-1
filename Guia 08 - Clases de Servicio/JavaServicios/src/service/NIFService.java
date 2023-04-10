@@ -1,43 +1,25 @@
 
-package extra;
+package service;
 
-import javaservicios.EjercicioModelo;
 import entities.NIF;
-import java.util.ArrayList;
 import java.util.Scanner;
-import static service.NIFService.*;
 
-public class ExtraEjercicio2 implements EjercicioModelo {
+public class NIFService {
     
-    @Override
-    public void ejercicio() {
-        
+    private static String[] letras = {"T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E"}; 
+    
+    public static NIF crearNIF(){
         Scanner sc = new Scanner(System.in).useDelimiter("\n");
-        ArrayList<NIF> nifes = new ArrayList<NIF>();
-        int opcion;
-        do{
-            System.out.println("--------------------------");
-            System.out.println("Ingrese una opcion:");
-            System.out.println("1. Crear NIF");
-            System.out.println("2. Mostrar NIF almacenados");
-            System.out.println("0. Salir");
-            opcion = sc.nextInt();
-            switch (opcion){
-                case 1 -> {nifes.add(crearNIF());}
-                case 2 -> {
-                    System.out.println("--------------------------");
-                    System.out.println("NIF almacenados:");
-                    for(NIF nif: nifes){
-                        mostrar(nif);
-                    }
-                }
-                case 0 -> {
-                    System.out.println("--------------------------");
-                    System.out.println("Gracias por usar nuestros servicios!");
-                }
-            }
-        } while (opcion!=0);
-        
+        NIF nif = new NIF();
+        System.out.println("Ingrese el DNI:");
+        nif.setDNI(sc.nextLong());
+        nif.setLetra(letras[(int)nif.getDNI()%23]);
+        System.out.println("El nuevo NIF es: "+nif.toString());
+        return nif;
+    }
+    
+    public static void mostrar(NIF nif){
+        System.out.println(nif.toString());
     }
     
 }

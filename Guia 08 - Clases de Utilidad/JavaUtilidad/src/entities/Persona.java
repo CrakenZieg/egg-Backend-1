@@ -1,23 +1,35 @@
 
-package practica;
+package entities;
 
-import entities.Persona;
-import javaservicios.EjercicioModelo;
-import service.PersonaService;
+import java.util.Date;
 
-public class Ejercicio5 implements EjercicioModelo {
+public class Persona {
+    
+    private String nombre;
+    private Date fechaNacimiento;
 
-    @Override
-    public void ejercicio() {
-        
-        Persona persona;
-        PersonaService personaService = new PersonaService();
-        
-        persona = personaService.crearPersona();
-        personaService.calcularEdad(persona);
-        personaService.mostrarPersona(persona);
-        System.out.println(persona.getNombre()+" es menor que alguien de 99 años? "+personaService.menorQue(persona, 99));
+    public Persona() {
     }
+
+    public Persona(String nombre, Date fechaNacimiento) {
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+    
 }
 /*
 Implemente la clase Persona en el paquete entidades. Una persona tiene un nombre 

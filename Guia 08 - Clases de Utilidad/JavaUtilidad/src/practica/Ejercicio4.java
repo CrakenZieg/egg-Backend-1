@@ -1,13 +1,19 @@
 
 package practica;
 
+import java.util.Date;
 import javaservicios.EjercicioModelo;
+import service.FechaService;
 
 public class Ejercicio4 implements EjercicioModelo {
 
     @Override
     public void ejercicio() {
-            
+           FechaService service = new FechaService();
+           Date nacimiento, actual;
+           nacimiento = service.fechaNacimiento();
+           actual = service.fechaActual();
+           System.out.println("Usted tiene "+service.diferencia(nacimiento, actual)+" años!");
     }
 }
 /*

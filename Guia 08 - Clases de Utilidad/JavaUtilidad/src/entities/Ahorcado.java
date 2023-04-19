@@ -1,16 +1,60 @@
 
-package extra;
+package entities;
 
-import javaservicios.EjercicioModelo;
-import service.AhorcadoService;
+import java.util.Random;
 
-public class ExtraEjercicio2 implements EjercicioModelo {
+public class Ahorcado {
+    
+    private Random rand = new Random();
+    private String[] palabras = {"palabra", "getter", "setter", "gato", "peludo", "vieja", "noche", "soleado", "lluvia"};
+    private char[] palabra;
+    private char[] descubierto;
+    private int encontradas;
+    private int intentos;
 
-    @Override
-    public void ejercicio() {
-        AhorcadoService service = new AhorcadoService();
-        service.juego();
+    public Ahorcado() {
+        String seleccion = palabras[rand.nextInt(0, palabras.length)];
+        palabra = seleccion.toCharArray();
+        descubierto = new char[palabra.length];
+        for(int i=0; i<descubierto.length;i++){
+            descubierto[i]='_';
+        }
+//        String seleccion = palabras[rand.nextInt(0, palabras.length)];
+//        for (int i = 0; i < seleccion.length(); i++) {
+//            palabra[i] = seleccion.substring(i, i+1);
+//        }
+        encontradas = 0;
+        intentos = seleccion.length()*2;
     }
+
+    public char[] getDescubierto() {
+        return descubierto;
+    }
+    public void setDescubierto(char[] descubierto) {
+        this.descubierto = descubierto;
+    }
+
+    public char[] getPalabra() {
+        return palabra;
+    }
+    public void setPalabra(char[] palabra) {
+        this.palabra = palabra;
+    }
+
+    public int getEncontradas() {
+        return encontradas;
+    }
+    public void setEncontradas(int encontradas) {
+        this.encontradas = encontradas;
+    }
+
+    public int getIntentos() {
+        return intentos;
+    }
+    public void setIntentos(int intentos) {
+        this.intentos = intentos;
+    }
+    
 }
 /*
 Juego Ahorcado: Crear una clase Ahorcado (como el juego), la cual deberá contener 

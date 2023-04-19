@@ -1,13 +1,19 @@
 
 package practica;
 
+import entities.Curso;
 import javaservicios.EjercicioModelo;
+import service.CursoService;
 
 public class Ejercicio6 implements EjercicioModelo {
 
     @Override
     public void ejercicio() {
-            
+        
+        CursoService service = new CursoService();
+        Curso curso = service.crearCurso();
+        service.calcularGananciaSemanal(curso);
+        
     }
 }
 /*
@@ -33,5 +39,4 @@ atributo alumnos
 una semana por curso. Para ello, se deben multiplicar la cantidad de horas por día, 
 el precio por hora, la cantidad de alumnos y la cantidad de días a la semana que 
 se repite el encuentro.
-
 */

@@ -1,13 +1,27 @@
 
 package extra;
 
+import entities.MesSecreto;
+import java.util.Scanner;
 import javaservicios.EjercicioModelo;
 
 public class ExtraEjercicio1 implements EjercicioModelo {
 
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
     @Override
     public void ejercicio() {
-      
+        
+        String ingreso = "";
+        MesSecreto mes = new MesSecreto();
+
+        do {
+            System.out.println("Adivine el mes secreto");
+            ingreso = sc.next().toLowerCase();
+            System.out.println(mes.getMesSecreto());
+        } while (!ingreso.equals(mes.getMesSecreto()));
+        
+        System.out.println("¡Ha acertado!");
+        
     }
 }
 /*

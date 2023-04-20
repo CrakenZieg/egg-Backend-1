@@ -18,6 +18,11 @@ public class AhorcadoService {
             System.out.println("Ingresa la palabra: ");
             opcion = sc.next().toLowerCase();
             juego.setPalabra(opcion.toCharArray());
+            char[] descubierto = new char[opcion.length()];
+            for(int i=0; i<descubierto.length;i++){
+                descubierto[i]='_';
+            }
+            juego.setDescubierto(descubierto);
             System.out.println("Ingresa la cantidad maxima de intentos:");
             juego.setIntentos(sc.nextInt());
         }
@@ -50,11 +55,7 @@ public class AhorcadoService {
         juego.setEncontradas(juego.getEncontradas()+resultado);
         System.out.println("Número de letras (encontradas, faltantes): ("+
                 juego.getEncontradas()+","+(juego.getPalabra().length-juego.getEncontradas())+")");
-        String muestra="";
-        for (char ch: juego.getDescubierto()) {
-            muestra = muestra+ch;
-        }
-        System.out.println("Lo descubierto es: "+muestra);
+        System.out.println("Lo descubierto es: "+String.valueOf(juego.getDescubierto()));
         return resultado > 0;
     }
     

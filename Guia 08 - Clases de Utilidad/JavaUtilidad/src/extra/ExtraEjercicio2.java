@@ -1,15 +1,21 @@
 
 package extra;
 
+import java.util.Scanner;
 import javaservicios.EjercicioModelo;
 import service.AhorcadoService;
 
 public class ExtraEjercicio2 implements EjercicioModelo {
-
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
     @Override
     public void ejercicio() {
         AhorcadoService service = new AhorcadoService();
-        service.juego();
+        String opcion;
+        do{
+            service.juego();
+            System.out.println("Queres seguir jugando al ahorcado? (y/n)");
+            opcion = sc.next();
+        } while(opcion.equals("y"));
     }
 }
 /*

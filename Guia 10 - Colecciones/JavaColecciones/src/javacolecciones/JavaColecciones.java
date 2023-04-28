@@ -1,7 +1,8 @@
-
 package javacolecciones;
 
 import java.util.Scanner;
+import practica.*;
+import teoria.Teoria;
 
 public class JavaColecciones {
 

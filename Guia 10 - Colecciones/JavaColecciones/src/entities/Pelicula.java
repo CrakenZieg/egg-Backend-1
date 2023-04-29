@@ -1,6 +1,8 @@
 
 package entities;
 
+import java.util.Comparator;
+
 public class Pelicula {
    
     private String titulo;
@@ -11,6 +13,14 @@ public class Pelicula {
     public Pelicula() {
     }
 
+    public Pelicula(String titulo, String director, double duracion) {
+        this.titulo = titulo;
+        this.director = director;
+        this.duracion = duracion;
+        int hora = (int) duracion;
+        horas = hora+":"+(int)((duracion-hora)*60);
+    }
+    
     public String getTitulo() {
         return titulo;
     }

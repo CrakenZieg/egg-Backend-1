@@ -1,13 +1,92 @@
 
 package practica;
 
+import entities.Pelicula;
+import java.util.ArrayList;
 import javacolecciones.EjercicioModelo;
+import service.PeliculaService;
 
 public class Ejercicio4 implements EjercicioModelo{
 
     @Override
     public void ejercicio() {
         
+        ArrayList<Pelicula> peliculas = new ArrayList<>();
+        PeliculaService servicio = new PeliculaService();
+        int opcion;
+        
+        do {
+            System.out.println("Ingrese una opcion:");
+            System.out.println("1. Ingresar pelicula");
+            System.out.println("2. Ingresar peliculas");
+            System.out.println("3. Mostrar peliculas");
+            System.out.println("4. Mostrar peliculas largas");
+            System.out.println("5. Ordenar de mayor a menor duracion");
+            System.out.println("6. Ordenar de menor a mayor duracion");
+            System.out.println("7. Ordenar por titulo");
+            System.out.println("8. Ordenar por director");
+            System.out.println("9. Automatico");
+            System.out.println("0. Salir");
+            opcion = sc.nextInt();
+            switch (opcion){
+                case 1 ->{
+                    servicio.crearPelicula(peliculas);
+                }
+                case 2 ->{
+                    servicio.ingresarPeliculas(peliculas);
+                }
+                case 3 ->{
+                    servicio.mostrarPeliculas(peliculas);
+                }
+                case 4 ->{
+                    servicio.mostrarPeliculasLargas(peliculas);
+                }
+                case 5 ->{
+                    servicio.ordenarPorDuracionMayor(peliculas);
+                }
+                case 6 ->{
+                    servicio.ordenarPorDuracionMenor(peliculas);
+                }
+                case 7 ->{
+                    servicio.ordenarPorTitulo(peliculas);
+                }
+                case 8 ->{
+                    servicio.ordenarPorDirector(peliculas);
+                }
+                case 9 ->{
+                    automatico(peliculas, servicio);
+                }
+                case 0 ->{
+                    System.out.println("Gracias! Hasta luego!");
+                }
+                default -> {
+                    System.out.println("Opcion no valida!");
+                }
+            }
+        } while(opcion!=0);  
+    }  
+    
+    public void automatico(ArrayList<Pelicula> peliculas, PeliculaService servicio){
+        System.out.println("1. Creando 15 peliculas aleatorias:");
+        servicio.cargarPeliculas(peliculas,15);
+        System.out.println("-----------------------------------------");
+        System.out.println("Mostrando las peliculas:");
+        servicio.mostrarPeliculas(peliculas);
+        System.out.println("-----------------------------------------");
+        System.out.println("Mostrando las peliculas largas:");
+        servicio.mostrarPeliculasLargas(peliculas);
+        System.out.println("-----------------------------------------");
+        System.out.println("Ordenando las peliculas por duracion (Mm):");
+        servicio.ordenarPorDuracionMayor(peliculas);
+        System.out.println("-----------------------------------------");
+        System.out.println("Ordenando las peliculas por duracion (mM):");
+        servicio.ordenarPorDuracionMenor(peliculas);
+        System.out.println("-----------------------------------------");
+        System.out.println("Ordenando las peliculas por titulo:");
+        servicio.ordenarPorTitulo(peliculas);
+        System.out.println("-----------------------------------------");
+        System.out.println("Ordenando las peliculas por director:");
+        servicio.ordenarPorDirector(peliculas);
     }
     
 }

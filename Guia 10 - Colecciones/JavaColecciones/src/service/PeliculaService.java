@@ -1,6 +1,7 @@
 
 package service;
 
+import comparators.*;
 import entities.Pelicula;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,6 +13,7 @@ public class PeliculaService {
    
     Scanner sc = new Scanner(System.in).useDelimiter("\n");
     Comparator<Pelicula> comparadorPelicula;
+    //PeliculaComparator comparadorPelicula;
     
     public void ingresarPeliculas(ArrayList<Pelicula> peliculas){
         String opcion = "";
@@ -63,25 +65,29 @@ public class PeliculaService {
     }
     
     public void ordenarPorDuracionMayor(ArrayList<Pelicula> peliculas){
-        comparadorPelicula = Comparator.comparing(Pelicula::getDuracion).reversed();
+        comparadorPelicula = new PeliculaDuracionComparator().reversed();
+        //comparadorPelicula = Comparator.comparing(Pelicula::getDuracion).reversed();
         peliculas.sort(comparadorPelicula);
         mostrarPeliculas(peliculas);
     }
     
     public void ordenarPorDuracionMenor(ArrayList<Pelicula> peliculas){
-        comparadorPelicula = Comparator.comparing(Pelicula::getDuracion);
+        comparadorPelicula = new PeliculaDuracionComparator();
+        //comparadorPelicula = Comparator.comparing(Pelicula::getDuracion);
         peliculas.sort(comparadorPelicula);
         mostrarPeliculas(peliculas);
     }
     
     public void ordenarPorDirector(ArrayList<Pelicula> peliculas){
-        comparadorPelicula = Comparator.comparing(Pelicula::getDirector);
+        comparadorPelicula = new PeliculaDirectorComparator();
+        //comparadorPelicula = Comparator.comparing(Pelicula::getDirector);
         peliculas.sort(comparadorPelicula);
         mostrarPeliculas(peliculas);
     }
     
     public void ordenarPorTitulo(ArrayList<Pelicula> peliculas){
-        comparadorPelicula = Comparator.comparing(Pelicula::getTitulo);
+        comparadorPelicula = new PeliculaTituloComparator();
+        //comparadorPelicula = Comparator.comparing(Pelicula::getTitulo);
         peliculas.sort(comparadorPelicula);
         mostrarPeliculas(peliculas);
     }

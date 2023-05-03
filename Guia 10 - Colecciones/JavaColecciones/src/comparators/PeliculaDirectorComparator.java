@@ -7,8 +7,7 @@ public class PeliculaDirectorComparator implements PeliculaComparator{
 
     @Override
     public int compare(Pelicula pelicula1, Pelicula pelicula2) {
-        return 0;
-        //return (int)String.compare(pelicula1.getTitulo(), pelicula2.getTitulo());
+        return pelicula1.getDirector().compareTo(pelicula2.getDirector());
     }
     
 }

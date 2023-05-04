@@ -1,13 +1,38 @@
 
 package practica;
 
+import java.util.Scanner;
 import javacolecciones.EjercicioModelo;
+import service.TiendaService;
 
 public class Ejercicio6 implements EjercicioModelo{
 
     @Override
     public void ejercicio() {
         
+        TiendaService service = new TiendaService();
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        int opcion;
+        
+        do{
+            System.out.println("Ingrese una opcion:\n"+
+                    "1. Ingresar un producto\n"+
+                    "2. Modificar el precio de un producto\n"+
+                    "3. Eliminar un producto\n"+
+                    "4. Mostrar productos\n"+
+                    "5. Ingresar productos aleatorios\n"+
+                    "0. Salir\n");
+            opcion = sc.nextInt();
+            switch (opcion){
+                case 1 ->{service.ingresarProducto();}
+                case 2 ->{service.modificarPrecio();}
+                case 3 ->{service.eliminarProducto();}
+                case 4 ->{service.mostrarProductos();}
+                case 5 ->{service.cargarProductos();}
+                case 0 ->{System.out.println("Gracias, saludos!");}
+                default ->{System.out.println("Opcion no valida");}
+            }
+        }while(opcion!=0);
     }
     
 }

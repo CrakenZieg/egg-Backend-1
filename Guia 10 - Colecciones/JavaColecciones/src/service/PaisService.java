@@ -3,7 +3,7 @@ package service;
 
 import entities.Pais;
 import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
@@ -50,19 +50,25 @@ public class PaisService {
     }
     
     public void eliminar(Set<Pais> paises, String pais){
-        Iterator<Pais> it = paises.iterator();
-        boolean estaba = false;
-        while(it.hasNext()){
-            if(it.next().getNombre().equals(pais)){
-                it.remove();
-                estaba = true;
-            }
-        }
-        if(estaba){
+        if(paises.contains(new Pais(pais))){
+            paises.remove(new Pais(pais));
             System.out.println(pais+" eliminado!");
         } else {
             System.out.println("El pais no se encontró!");
         }
+//        Iterator<Pais> it = paises.iterator();
+//        boolean estaba = false;
+//        while(it.hasNext()){
+//            if(it.next().getNombre().equals(pais)){
+//                it.remove();
+//                estaba = true;
+//            }
+//        }
+//        if(estaba){
+//            System.out.println(pais+" eliminado!");
+//        } else {
+//            System.out.println("El pais no se encontró!");
+//        }
     }
     
     public void cargarPaises(Set<Pais> paises, int n){

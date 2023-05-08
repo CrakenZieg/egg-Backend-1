@@ -21,6 +21,7 @@ public class Ejercicio3 implements EjercicioModelo{
             System.out.println("2. Ingresar alumnos");
             System.out.println("3. Mostrar alumnos");
             System.out.println("4. Mostrar notas finales");
+            System.out.println("5. Mostrar nota final");
             System.out.println("0. Salir");
             opcion = sc.nextInt();
             switch (opcion){
@@ -40,6 +41,16 @@ public class Ejercicio3 implements EjercicioModelo{
                     System.out.println("Las notas finales son: ");
                     for(int i=0; i<alumnos.size(); i++){
                         servicio.notaFinal(i, alumnos);
+                    }
+                }
+                case 5 ->{
+                    System.out.println("Ingrese el nombre del alumno: ");
+                    String nombre = sc.next();
+                    int indice = servicio.buscarAlumno(nombre, alumnos);
+                    if(indice!=-1){
+                        servicio.notaFinal(indice, alumnos);
+                    } else {
+                        System.out.println("El alumno no está en la lista!");
                     }
                 }
                 case 0 ->{

@@ -1,12 +1,58 @@
 
 package extra;
 
+import entities.LibroExtra;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 import javacolecciones.EjercicioModelo;
+import service.LibreriaService;
 
 public class ExtraEjercicio3 implements EjercicioModelo{
 
     @Override
     public void ejercicio() {
+        
+        Set<LibroExtra> libreria = new HashSet<>();
+        LibreriaService servicio = new LibreriaService();
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        int opcion;
+        
+        do {
+            System.out.println("Ingrese una opcion:");
+            System.out.println("1. Ingresar");
+            System.out.println("2. Prestar");
+            System.out.println("3. Devolver");
+            System.out.println("4. Mostrar libreria");
+            System.out.println("5. Cargar aleatorio");
+            System.out.println("0. Salir");
+            opcion = sc.nextInt();
+            switch (opcion){
+                case 1 ->{
+                    servicio.ingresarLibro(libreria);
+                }
+                case 2 ->{
+                    servicio.prestar(libreria);
+                }
+                case 3 ->{
+                    servicio.devolver(libreria);
+                }
+                case 4 ->{
+                    servicio.mostrarLista(libreria);
+                }
+                case 5 ->{
+                    System.out.println("Ingrese la cantidad de libros a generar:");
+                    int n = sc.nextInt();
+                    servicio.cargarLibro(libreria,n);
+                }
+                case 0 ->{
+                    System.out.println("Gracias! Hasta luego!");
+                }
+                default -> {
+                    System.out.println("Opcion no valida!");
+                }
+            }
+        } while(opcion!=0); 
         
     }
     

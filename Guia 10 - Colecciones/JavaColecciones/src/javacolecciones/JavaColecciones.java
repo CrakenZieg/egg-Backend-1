@@ -82,13 +82,13 @@ public class JavaColecciones {
                             break;
                         }     
                         case 3 -> {
-                            EjercicioModelo ejercicio2 = new ExtraEjercicio2();
-                            ejercicio2.ejercicio();
+                            EjercicioModelo ejercicio3 = new ExtraEjercicio3();
+                            ejercicio3.ejercicio();
                             break;
                         }
                         case 4 -> {
-                            EjercicioModelo ejercicio2 = new ExtraEjercicio2();
-                            ejercicio2.ejercicio();
+                            EjercicioModelo ejercicio4 = new ExtraEjercicio4();
+                            ejercicio4.ejercicio();
                             break;
                         }
                     }

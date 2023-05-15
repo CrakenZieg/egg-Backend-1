@@ -1,37 +1,62 @@
 
-package practica;
+package domain;
 
-import domain.JuegoEj2;
-import domain.JugadorEj2;
-import java.util.ArrayList;
-import java.util.Random;
-import javarelaciones.EjercicioModelo;
 import servicio.RevolverEj2Servicio;
 
-public class Ejercicio2 implements EjercicioModelo{
+public class JugadorEj2 {
+    
+    private int id;
+    private String nombre;
+    private boolean mojado;
 
-    @Override
-    public void ejercicio() {
-        
-        Random rand = new Random();
-        ArrayList<JugadorEj2> jugadores = new ArrayList<>();
-        RevolverEj2Servicio revolver = new RevolverEj2Servicio();
-        JuegoEj2 juego = new JuegoEj2();
-        int n = rand.nextInt(2,6);
-        for (int i = 0; i < n; i++) {
-            jugadores.add(new JugadorEj2(rand.nextInt(0, 99)));
-        }
-//        jugadores.add(new JugadorEj2(0,"Coco"));
-//        jugadores.add(new JugadorEj2(0,"Roberto"));
-//        jugadores.add(new JugadorEj2(0,"Alan"));
-//        jugadores.add(new JugadorEj2(0,"Elias"));
-        juego.llenarJuego(jugadores, revolver);
-        juego.ronda();
-        
+    public JugadorEj2(int id) {
+        this.id = id;
+        this.nombre = "Jugador " + Integer.toString(id);
+        mojado = false;
+    }
+
+    public JugadorEj2(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
     }
     
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public boolean isMojado() {
+        return mojado;
+    }
+
+    public void setMojado(boolean mojado) {
+        this.mojado = mojado;
+    }
     
-    
+    public boolean disparo(RevolverEj2Servicio revolver){
+        boolean gatillo = revolver.mojar();
+        if(gatillo){
+            setMojado(true);
+        }
+        return gatillo;
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", nombre=" + nombre + ", mojado=" + mojado;
+    }
+
 }
 /*
 Realizar el juego de la ruleta rusa de agua en Java. Como muchos saben, el juego se trata de

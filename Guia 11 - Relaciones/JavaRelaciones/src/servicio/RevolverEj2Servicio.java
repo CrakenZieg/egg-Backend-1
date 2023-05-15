@@ -1,33 +1,34 @@
 
-package practica;
+package servicio;
 
-import domain.JuegoEj2;
-import domain.JugadorEj2;
-import java.util.ArrayList;
+import domain.RevolverEj2;
 import java.util.Random;
-import javarelaciones.EjercicioModelo;
-import servicio.RevolverEj2Servicio;
 
-public class Ejercicio2 implements EjercicioModelo{
+public class RevolverEj2Servicio {
+    
+    private Random rand = new Random();
+    private RevolverEj2 revolver;
+
+    public RevolverEj2Servicio() {
+        this.revolver = new RevolverEj2( rand.nextInt(0,5),rand.nextInt(0,5));
+    }
+    
+    public void llenarRevolver(){
+        revolver.setPosBala(rand.nextInt(0,5));
+        revolver.setPosTambor(rand.nextInt(0,5));
+    }
+    
+    public boolean mojar(){
+        return revolver.getPosBala()==revolver.getPosTambor();
+    }
+    
+    public void siguienteChorro(){
+        revolver.setPosTambor(rand.nextInt(0,5));
+    }
 
     @Override
-    public void ejercicio() {
-        
-        Random rand = new Random();
-        ArrayList<JugadorEj2> jugadores = new ArrayList<>();
-        RevolverEj2Servicio revolver = new RevolverEj2Servicio();
-        JuegoEj2 juego = new JuegoEj2();
-        int n = rand.nextInt(2,6);
-        for (int i = 0; i < n; i++) {
-            jugadores.add(new JugadorEj2(rand.nextInt(0, 99)));
-        }
-//        jugadores.add(new JugadorEj2(0,"Coco"));
-//        jugadores.add(new JugadorEj2(0,"Roberto"));
-//        jugadores.add(new JugadorEj2(0,"Alan"));
-//        jugadores.add(new JugadorEj2(0,"Elias"));
-        juego.llenarJuego(jugadores, revolver);
-        juego.ronda();
-        
+    public String toString() {
+        return revolver.toString();
     }
     
     
@@ -37,7 +38,7 @@ public class Ejercicio2 implements EjercicioModelo{
 Realizar el juego de la ruleta rusa de agua en Java. Como muchos saben, el juego se trata de
 un número de jugadores, que, con un revolver de agua, el cual posee una sola carga de agua,
 se dispara y se moja. Las clases por hacer del juego son las siguientes:
-Clase Revolver de agua: esta clase posee los siguientes atributos: posición actual (posición
+Clase RevolverEj2 de agua: esta clase posee los siguientes atributos: posición actual (posición
 del tambor que se dispara, puede que esté el agua o no) y posición agua (la posición del
 tambor donde se encuentra el agua). Estas dos posiciones, se generarán aleatoriamente.
 Métodos:
@@ -51,14 +52,14 @@ jugador), nombre (Empezara con Jugador más su ID, “Jugador 1” por ejemplo) 
 si está mojado o no el jugador). El número de jugadores será decidido por el usuario, pero
 debe ser entre 1 y 6. Si no está en este rango, por defecto será 6.
 Métodos:
-• disparo(Revolver r): el método, recibe el revolver de agua y llama a los métodos de
-mojar() y siguienteChorro() de Revolver. El jugador se apunta, aprieta el gatillo y si el
+• disparo(RevolverEj2 r): el método, recibe el revolver de agua y llama a los métodos de
+mojar() y siguienteChorro() de RevolverEj2. El jugador se apunta, aprieta el gatillo y si el
 revolver tira el agua, el jugador se moja. El atributo mojado pasa a false y el método
 devuelve true, sino false.
 Clase Juego: esta clase posee los siguientes atributos: Jugadores (conjunto de Jugadores) y
-Revolver
+RevolverEj2
 Métodos:
-• llenarJuego(ArrayList<Jugador>jugadores, Revolver r): este método recibe los jugadores
+• llenarJuego(ArrayList<Jugador>jugadores, RevolverEj2 r): este método recibe los jugadores
 y el revolver para guardarlos en los atributos del juego.
 • ronda(): cada ronda consiste en un jugador que se apunta con el revolver de agua y
 aprieta el gatillo. Sí el revolver tira el agua el jugador se moja y se termina el juego, sino se

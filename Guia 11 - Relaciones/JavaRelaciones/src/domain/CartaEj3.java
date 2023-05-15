@@ -1,33 +1,35 @@
 
-package practica;
+package domain;
 
-import domain.Baraja;
-import domain.CartaEj3;
-import java.util.ArrayList;
-import javarelaciones.EjercicioModelo;
+public class CartaEj3 {
+    
+    private int numero;
+    private String palo;
 
-public class Ejercicio3 implements EjercicioModelo{
+    public CartaEj3(int numero, String palo) {
+        this.numero = numero;
+        this.palo = palo;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getPalo() {
+        return palo;
+    }
+
+    public void setPalo(String palo) {
+        this.palo = palo;
+    }
 
     @Override
-    public void ejercicio() {
-        
-        Baraja baraja = new Baraja();
-        System.out.println("Baraja nueva: ");
-        baraja.mostrarBaraja();
-        System.out.println("Baraja mezclada: ");
-        baraja.barajar();
-        baraja.mostrarBaraja();
-        ArrayList<CartaEj3> mano = baraja.darCartas(7);
-        System.out.println("Mano: ");
-        for (CartaEj3 cartaEj3 : mano) {
-            System.out.println(cartaEj3.toString());
-        }
-        System.out.println("Pila de descarte: ");
-        baraja.cartasMonton();
-        System.out.println("Cantidad de cartas disponibles: ");
-        baraja.cartasDisponibles();
-        System.out.println("Cartas en baraja: ");
-        baraja.mostrarBaraja();
+    public String toString() {
+        return numero + "/" + palo;
     }
     
 }

@@ -1,36 +1,50 @@
 
-package practica;
+package domain;
 
-import domain.JuegoEj2;
-import domain.JugadorEj2;
 import java.util.ArrayList;
 import java.util.Random;
-import javarelaciones.EjercicioModelo;
 import servicio.RevolverEj2Servicio;
 
-public class Ejercicio2 implements EjercicioModelo{
-
-    @Override
-    public void ejercicio() {
-        
-        Random rand = new Random();
-        ArrayList<JugadorEj2> jugadores = new ArrayList<>();
-        RevolverEj2Servicio revolver = new RevolverEj2Servicio();
-        JuegoEj2 juego = new JuegoEj2();
-        int n = rand.nextInt(2,6);
-        for (int i = 0; i < n; i++) {
-            jugadores.add(new JugadorEj2(rand.nextInt(0, 99)));
-        }
-//        jugadores.add(new JugadorEj2(0,"Coco"));
-//        jugadores.add(new JugadorEj2(0,"Roberto"));
-//        jugadores.add(new JugadorEj2(0,"Alan"));
-//        jugadores.add(new JugadorEj2(0,"Elias"));
-        juego.llenarJuego(jugadores, revolver);
-        juego.ronda();
-        
+public class JuegoEj2 {
+    
+    ArrayList<JugadorEj2> jugadores;
+    RevolverEj2Servicio revolver;
+    Random rand = new Random();
+    boolean fin = false;
+    
+    public void llenarJuego(ArrayList<JugadorEj2> jugadores, RevolverEj2Servicio revolver){
+        this.jugadores = jugadores;
+        this.revolver = revolver;
     }
     
+    public void ronda(){
+        System.out.println("Los jugadores son: ");
+        mostrarLista();
+        int jugador = rand.nextInt(0, jugadores.size());
+        System.out.println("Comienza "+jugadores.get(jugador).toString());
+        do{
+            System.out.println("Dispara "+jugadores.get(jugador).toString());
+            fin = jugadores.get(jugador).disparo(revolver);
+            if (!fin){
+                System.out.println("La recamara estaba vacia!");
+                revolver.siguienteChorro();
+                if(jugador==jugadores.size()-1){
+                    jugador = 0;
+                } else {
+                    jugador++;
+                }
+            } else {
+                System.out.println(jugadores.get(jugador).toString()+" se llevo un flor de susto.");
+            }
+        } while (!fin);
+        fin = false;
+    }
     
+    public void mostrarLista(){
+        for (JugadorEj2 jugador : jugadores) {
+            System.out.println(jugador.toString());
+        }
+    }
     
 }
 /*

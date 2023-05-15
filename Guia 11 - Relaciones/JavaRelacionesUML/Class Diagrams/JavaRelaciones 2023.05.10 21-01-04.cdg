@@ -124,7 +124,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Teoria2" package="teoria" visibility="public" xPosition="105.0" yPosition="77.0">
+    <Class name="Teoria2" package="teoria" visibility="public" xPosition="80.0" yPosition="105.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -138,20 +138,20 @@
         </Method>
       </Methods>
     </Class>
-    <Interface name="EjercicioModelo" package="javarelaciones" visibility="public" xPosition="475.0" yPosition="14.0">
+    <Interface name="EjercicioModelo" package="javarelaciones" visibility="public" xPosition="444.0" yPosition="14.0">
       <Methods>
         <Method name="ejercicio" returnType="void" visibility="public"/>
       </Methods>
     </Interface>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <UseRelation source="domain.Equipo" target="domain.Jugador" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="teoria.Teoria2" target="javarelaciones.EjercicioModelo"/>
-    <HasRelation name="equipo" source="domain.Equipo" target="domain.Jugador" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Jugador&gt;"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="teoria.Teoria1" target="javarelaciones.EjercicioModelo"/>
-    <UseRelation source="domain.Persona" target="domain.DNI" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="dni" source="domain.Persona" target="domain.DNI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="teoria.Teoria2" target="domain.Equipo" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="teoria.Teoria1" target="domain.Persona" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="domain.Equipo" target="domain.Jugador" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dni" source="domain.Persona" target="domain.DNI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="teoria.Teoria2" target="javarelaciones.EjercicioModelo"/>
+    <HasRelation name="equipo" source="domain.Equipo" target="domain.Jugador" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Jugador&gt;"/>
+    <UseRelation source="domain.Persona" target="domain.DNI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="teoria.Teoria1" target="javarelaciones.EjercicioModelo"/>
   </ClassDiagramRelations>
 </ClassDiagram>

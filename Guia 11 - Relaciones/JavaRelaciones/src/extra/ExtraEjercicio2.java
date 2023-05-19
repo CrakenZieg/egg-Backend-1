@@ -1,16 +1,80 @@
 
 package extra;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Random;
+import java.util.Scanner;
 import practica.*;
 import javarelaciones.EjercicioModelo;
+import servicio.CineServicio;
+import tests.TestCine;
 
 public class ExtraEjercicio2 implements EjercicioModelo{
 
+    Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8).useDelimiter("\n");
+    private String[] filas = {"1","2","3","4","5","6","7","8"};
+    private String[] columnas = {"A","B","C","D","E","F"};
+        
     @Override
     public void ejercicio() {
         
+        CineServicio servicio = new CineServicio(filas, columnas);
+        int opcion;
+        
+        do{
+            System.out.println("Ingrese una opción:");
+            System.out.println("1. Cargar pelicula");
+            System.out.println("2. Mostrar pelicula");
+            System.out.println("3. Cargar espectador");
+            System.out.println("4. Mostrar espectadores");            
+            System.out.println("5. Ocupar asiento");
+            System.out.println("6. Mostrar espectadores en sala");
+            System.out.println("7. Mostrar sala");
+            System.out.println("8. Ajustar precio de entrada");
+            System.out.println("9. Test");
+            System.out.println("0. Salir");
+            opcion = sc.nextInt();
+            switch (opcion){
+                case 1->{
+                    servicio.cargarPelicula();
+                }
+                case 2->{
+                    servicio.mostrarPelicula();
+                }
+                case 3->{
+                    servicio.cargarEspectador();
+                }
+                case 4->{
+                    servicio.mostrarEspectadores();
+                }
+                case 5->{
+                    servicio.ocuparLugar();
+                }
+                case 6->{
+                    servicio.mostrarEspectadoresSala();
+                }
+                case 7->{
+                    servicio.mostrarSala();
+                }
+                case 8->{
+                    servicio.precio();
+                }
+                case 9->{
+                    TestCine testeo = new TestCine(servicio);
+                    testeo.testearSala();
+                    servicio.mostrarSala();
+                }
+                case 0->{
+                    System.out.println("Saludos");
+                }
+                default->{
+                    System.out.println("Opción no valida");
+                }
+            
+            }
+        }while(opcion!=0);  
     }
-    
+
 }
 /*
 Nos piden hacer un programa sobre un Cine, que tiene una sala con un conjunto de asientos

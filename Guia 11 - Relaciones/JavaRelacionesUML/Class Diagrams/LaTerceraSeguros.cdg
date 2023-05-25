@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="LaTerceraSeguros">
+  <ClassDiagramComponents>
+    <Class name="Cliente" package="" visibility="public" xPosition="43.0" yPosition="848.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="documento" type="int" visibility="private"/>
+        <Field name="mail" type="String" visibility="private"/>
+        <Field name="domicilio" type="String" visibility="private"/>
+        <Field name="telefono" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="GetterYSetters" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Vehiculo" package="" visibility="public" xPosition="941.0" yPosition="848.0">
+      <Fields>
+        <Field name="Marca" type="String" visibility="private"/>
+        <Field name="modelo" type="String" visibility="private"/>
+        <Field name="ano" type="int" visibility="private"/>
+        <Field name="numMotor" type="int" visibility="private"/>
+        <Field name="numChasis" type="int" visibility="private"/>
+        <Field name="color" type="String" visibility="private"/>
+        <Field name="tipo" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="GettersYSettters" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Poliza" package="" visibility="public" xPosition="479.0" yPosition="848.0">
+      <Fields>
+        <Field name="cliente" type="Cliente" visibility="private"/>
+        <Field name="vehiculo" type="Vehiculo" visibility="private"/>
+        <Field name="numPoliza" type="int" visibility="private"/>
+        <Field name="fechaInicio" type="Date" visibility="private"/>
+        <Field name="fechaFin" type="Date" visibility="private"/>
+        <Field name="cuotas" type="List&lt;Couta&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="GettersYSetters" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Couta" package="" visibility="public" xPosition="480.0" yPosition="1083.0">
+      <Fields>
+        <Field name="numCuota" type="int" visibility="private"/>
+        <Field name="monto" type="double" visibility="private"/>
+        <Field name="pagado" type="boolean" visibility="private"/>
+        <Field name="vencimiento" type="Date" visibility="private"/>
+        <Field name="formaPago" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="GettersYSetters" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ClientesServicio" package="" visibility="public" xPosition="43.0" yPosition="434.0">
+      <Fields>
+        <Field name="sc" type="Scanner" visibility="private"/>
+        <Field name="clientes" type="List&lt;Cliente&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearCliente" returnType="Cliente" visibility="public"/>
+        <Method name="eliminarCliente" returnType="Cliente" visibility="public">
+          <Argument type="Cliente" name="cliente"/>
+        </Method>
+        <Method name="actualizarCliente" returnType="Cliente" visibility="public">
+          <Argument type="Cliente" name="cliente"/>
+        </Method>
+        <Method name="encontrarCliente" returnType="int" visibility="public">
+          <Argument type="int" name="documento"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="VehiculoService" package="" visibility="public" xPosition="788.0" yPosition="434.0">
+      <Fields>
+        <Field name="sc" type="Scanner" visibility="private"/>
+        <Field name="vehiculos" type="List&lt;Vehiculo&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearVehiculo" returnType="Vehiculo" visibility="public"/>
+        <Method name="eliminarVehiculo" returnType="Vehiculo" visibility="public">
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Method>
+        <Method name="actulizarVehiculo" returnType="Vehiculo" visibility="public">
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Method>
+        <Method name="encontrarVehiculo" returnType="Vehiculo" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PolizaService" package="" visibility="public" xPosition="383.0" yPosition="434.0">
+      <Fields>
+        <Field name="sc" type="Scanner" visibility="private"/>
+        <Field name="polizas" type="List&lt;Poliza&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearPoliza" returnType="Vehiculo" visibility="public">
+          <Argument type="Cliente" name="cliente"/>
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Method>
+        <Method name="elimarPoliza" returnType="Poliza" visibility="public">
+          <Argument type="Poliza" name="poliza"/>
+        </Method>
+        <Method name="actualizaPoliza" returnType="Poliza" visibility="public">
+          <Argument type="Poliza" name="poliza"/>
+        </Method>
+        <Method name="encontrarPoliza" returnType="int" visibility="public">
+          <Argument type="int" name="numPoliza"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TerceraServicio" package="" visibility="public" xPosition="201.0" yPosition="61.0">
+      <Fields>
+        <Field name="clienteService" type="ClienteServicio" visibility="private"/>
+        <Field name="vehiculoService" type="VehiculoServicio" visibility="private"/>
+        <Field name="polizaService" type="PolizaServicio" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="generarPoliza" returnType="void" visibility="public"/>
+        <Method name="modificarPoliza" returnType="void" visibility="public"/>
+        <Method name="eliminarPoliza" returnType="void" visibility="public"/>
+        <Method name="consultas" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ExtraEjercicio3" package="" visibility="public" xPosition="765.0" yPosition="61.0">
+      <Fields>
+        <Field name="servicio" type="TerceraServicio" visibility="private"/>
+        <Field name="sc" type="Scanner" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="menu" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="coutas" source="Poliza" target="Couta" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="LinkedList"/>
+    <HasRelation name="dependencia" source="TerceraServicio" target="PolizaService" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="registro" source="ClientesServicio" target="Cliente" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="servicio" source="ExtraEjercicio3" target="TerceraServicio" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <UseRelation name="gestion" source="PolizaService" target="Poliza" sourceCardinality="1..*" targetCardinality="0..1"/>
+    <HasRelation name="registro" source="PolizaService" target="Poliza" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="vehiculo" source="Poliza" target="Vehiculo" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <UseRelation name="gestion" source="VehiculoService" target="Vehiculo" sourceCardinality="1..*" targetCardinality="0..1"/>
+    <UseRelation name="gestion" source="ClientesServicio" target="Cliente" sourceCardinality="1..*" targetCardinality="0..1"/>
+    <HasRelation name="dependencia" source="TerceraServicio" target="VehiculoService" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="registro" source="VehiculoService" target="Vehiculo" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="dependencia" source="TerceraServicio" target="ClientesServicio" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="cliente" source="Poliza" target="Cliente" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

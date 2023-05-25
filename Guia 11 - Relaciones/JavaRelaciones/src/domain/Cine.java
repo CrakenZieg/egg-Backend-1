@@ -8,17 +8,18 @@ public class Cine {
     private int disponibles;
     private String[] columnas;
     private String[] filas;
-    private Espectador[][] sala = new Espectador[filas.length][columnas.length];
+    private Espectador[][] sala;
 
     public Cine(String[] filas, String[] columnas) {
-        for (int i = 0; i < sala.length; i++) {
-            for (int j = 0; j < sala[i].length; j++) {
-                sala[i][j] = null;
-            }
-        }
         this.filas = filas;
         this.columnas = columnas;        
         this.disponibles = filas.length*columnas.length;
+        sala = new Espectador[filas.length][columnas.length];
+        for (int i = 0; i < filas.length; i++) {
+            for (int j = 0; j < columnas.length; j++) {
+                sala[i][j] = null;
+            }
+        }
     }
 
     public Pelicula getPelicula() {

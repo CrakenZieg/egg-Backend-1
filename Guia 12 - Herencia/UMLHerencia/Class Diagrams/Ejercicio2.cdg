@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Ejercicio2">
+  <ClassDiagramComponents>
+    <Class name="Electrodomestico" package="" visibility="public" xPosition="158.0" yPosition="14.0">
+      <Fields>
+        <Field name="precio" type="double" visibility="private"/>
+        <Field name="color" type="String" visibility="private"/>
+        <Field name="consumoElectrico" type="char" visibility="private"/>
+        <Field name="peso" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="GettersYSetters" returnType="void" visibility="public"/>
+        <Method name="comprobarColor" returnType="String" visibility="protected">
+          <Argument type="String" name="color"/>
+        </Method>
+        <Method name="crearElectrodomestico" returnType="void" visibility="public"/>
+        <Method name="precioFinal" returnType="void" visibility="public"/>
+        <Method name="comprobarConsumoEnergetico" returnType="char" visibility="protected">
+          <Argument type="char" name="letra"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Lavadora" package="" visibility="public" xPosition="29.0" yPosition="404.0">
+      <Fields>
+        <Field name="carga" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="GetterSetterCarga" returnType="void" visibility="public"/>
+        <Method name="crearLavadora" returnType="void" visibility="public"/>
+        <Method name="precioFinal" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Televisor" package="" visibility="public" xPosition="429.0" yPosition="415.0">
+      <Fields>
+        <Field name="resolucion" type="int" visibility="private"/>
+        <Field name="sintonizadorTDT" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="crearTelevisor" returnType="void" visibility="public"/>
+        <Method name="precioFinal" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="Lavadora" target="Electrodomestico"/>
+    <IsRelation name="is" source="Televisor" target="Electrodomestico"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

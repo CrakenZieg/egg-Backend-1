@@ -86,13 +86,13 @@ public class Electrodomestico {
         this.peso = sc.nextDouble();
         System.out.println("Ingrese el color del Electrodomestico : ");
         System.out.println("\"BLANCO\", \"NEGRO\", \"ROJO\", \"AZUL\", \"GRIS\"");
-        this.color = sc.next();
+        comprobarColor(sc.next());
         System.out.println("Ingrese el consumo del Electrodomestico (A-F): ");
-        this.consumoElectrico = sc.next().charAt(0);
+        comprobarConsumoEnergetico(sc.next().toUpperCase().charAt(0));
     }
 
     public void precioFinal() {
-        switch  (consumoElectrico){
+        switch (consumoElectrico){
             case 'A'->{ precio+=1000;}
             case 'B'->{ precio+=800;}
             case 'C'->{ precio+=600;}

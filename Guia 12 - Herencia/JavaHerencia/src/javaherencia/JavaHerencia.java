@@ -59,18 +59,18 @@ public class JavaHerencia {
                             ejercicio1.ejercicio();
                             break;
                         }
-//                        case 2 -> {
-//                            EjercicioModelo ejercicio2 = new ExtraEjercicio2();
-//                            ejercicio2.ejercicio();
-//                            break;
-//                        }     
-//                        case 3 -> {
-//                            EjercicioModelo ejercicio3 = new ExtraEjercicio3();
-//                            ejercicio3.ejercicio();
-//                            break;
-//                        }
+                        case 2 -> {
+                            EjercicioModelo ejercicio2 = new Extra2();
+                            ejercicio2.ejercicio();
+                            break;
+                        }     
+                        case 3 -> {
+                            EjercicioModelo ejercicio3 = new Extra3();
+                            ejercicio3.ejercicio();
+                            break;
+                        }
 //                        case 4 -> {
-//                            EjercicioModelo ejercicio4 = new ExtraEjercicio4();
+//                            EjercicioModelo ejercicio4 = new Extra4();
 //                            ejercicio4.ejercicio();
 //                            break;
 //                        }

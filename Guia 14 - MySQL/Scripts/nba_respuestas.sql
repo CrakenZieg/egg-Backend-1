@@ -21,6 +21,7 @@ select Puntos_por_partido from estadisticas where jugador=(select codigo from ju
 SALIO :)
 select j.nombre, eq.Nombre, sum(e.puntos_por_partido*(select count(1) from partidos where (equipo_local=eq.Nombre or equipo_visitante=eq.Nombre) and temporada=e.temporada)) as puntos from (jugadores as j join estadisticas as e) 
 	join equipos as eq on j.codigo = e.jugador and j.Nombre_equipo = eq.Nombre group by j.nombre, eq.Nombre;
+Aproximaciones:
 #select count(equipo_local) from partidos where equipo_local='raptors' and temporada='98/99';
 #select count(equipo_visitante)+count(equipo_local) as partidos_por_temporada,equipos.nombre from partidos join equipos on equipos.nombre = partidos.equipo_local where temporada='05/06' group by equipos.nombre;
 #select distinct temporada from estadisticas limit 100;
@@ -32,16 +33,21 @@ select j.nombre, eq.Nombre, sum(e.puntos_por_partido*(select count(1) from parti
 #select temporada, count(equipo_visitante) from partidos as p group by temporada, equipo_visitante;*/
 #select * from jugadores as j join estadisticas as e on j.codigo = e.jugador;
 #select count(1) from (partidos as p join jugadores as j1) join jugadores as j2 on p.equipo_local = j1.Nombre_equipo and p.equipo_visitante = j2.Nombre_equipo where (equipo_local=eq.Nombre or equipo_visitante=eq.Nombre) and temporada=e.temporada)
-/*11. Mostrar el número de jugadores de cada equipo.*/
-
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-/**/
-
-select * from partidos
+/*11. Mostrar el número de jugadores de cada equipo.
+select nombre_equipo, count(codigo) from jugadores group by nombre_equipo;
+select nombre, nombre_equipo from jugadores;*/
+/*12. Mostrar el jugador que más puntos ha realizado en toda su carrera.
+select j.nombre, eq.Nombre, sum(e.puntos_por_partido*(select count(1) from partidos where (equipo_local=eq.Nombre or equipo_visitante=eq.Nombre) and temporada=e.temporada)) as puntos from (jugadores as j join estadisticas as e) 
+	join equipos as eq on j.codigo = e.jugador and j.Nombre_equipo = eq.Nombre group by j.nombre, eq.Nombre order by puntos desc limit 1;*/
+/*13. Mostrar el nombre del equipo, conferencia y división del jugador más alto de la NBA.
+select j.nombre, j.altura, j.nombre_equipo, e.conferencia, e.division from jugadores as j join equipos as e on j.Nombre_equipo = e.Nombre
+	order by altura desc limit 1;*/
+/*14.Mostrar el partido o partidos (equipo_local, equipo_visitante y diferencia) con mayor diferencia de puntos.
+select equipo_local, equipo_visitante, diferencia from 
+	(select equipo_local, equipo_visitante, abs(puntos_local-puntos_visitante) as diferencia from partidos group by equipo_local, equipo_visitante, diferencia limit 50000) 
+		as p where diferencia=(select max(abs(puntos_local-puntos_visitante)) from partidos);*/
+/*15.Mostrar quien gana en cada partido (codigo, equipo_local, equipo_visitante, equipo_ganador), en caso de empate sera null.
+select codigo, equipo_local, equipo_visitante,
+	case when puntos_local-puntos_visitante<0 then equipo_visitante
+		when puntos_local-puntos_visitante>0 then equipo_local
+	end as ganador, puntos_local-puntos_visitante as diferencia from partidos;*/

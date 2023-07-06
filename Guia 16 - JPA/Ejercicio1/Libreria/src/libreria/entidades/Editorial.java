@@ -7,13 +7,20 @@ import javax.persistence.*;
 public class Editorial {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(unique = true)
     private String nombre;
     private Boolean alta;
 
     public Editorial() {
     }
 
+    public Editorial(String nombre, Boolean alta) {
+        this.nombre = nombre;
+        this.alta = alta;
+    }
+    
     public Editorial(Integer id, String nombre, Boolean alta) {
         this.id = id;
         this.nombre = nombre;

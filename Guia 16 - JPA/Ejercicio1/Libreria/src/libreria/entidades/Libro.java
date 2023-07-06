@@ -7,12 +7,15 @@ import javax.persistence.*;
 public class Libro {
     
     @Id 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @Column(unique = true)
     private Long isbn;    
     private String titulo;    
-    private Integer anio;
-    private Integer ejemplares;
-    private Integer ejemplaresPrestados;
-    private Integer ejemplaresRestantes;
+    private int anio;
+    private int ejemplares;
+    private int ejemplaresPrestados;
+    private int ejemplaresRestantes;
     private Boolean alta;
     @ManyToOne
     private Autor autor;
@@ -22,7 +25,7 @@ public class Libro {
     public Libro() {
     }
 
-    public Libro(Long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
+    public Libro(Long isbn, String titulo, int anio, int ejemplares, int ejemplaresPrestados, int ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.anio = anio;
@@ -32,6 +35,27 @@ public class Libro {
         this.alta = alta;
         this.autor = autor;
         this.editorial = editorial;
+    }
+
+    public Libro(int id, Long isbn, String titulo, int anio, int ejemplares, int ejemplaresPrestados, int ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
+        this.id = id;
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.anio = anio;
+        this.ejemplares = ejemplares;
+        this.ejemplaresPrestados = ejemplaresPrestados;
+        this.ejemplaresRestantes = ejemplaresRestantes;
+        this.alta = alta;
+        this.autor = autor;
+        this.editorial = editorial;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Long getIsbn() {
@@ -50,35 +74,35 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public Integer getAnio() {
+    public int getAnio() {
         return anio;
     }
 
-    public void setAnio(Integer anio) {
+    public void setAnio(int anio) {
         this.anio = anio;
     }
 
-    public Integer getEjemplares() {
+    public int getEjemplares() {
         return ejemplares;
     }
 
-    public void setEjemplares(Integer ejemplares) {
+    public void setEjemplares(int ejemplares) {
         this.ejemplares = ejemplares;
     }
 
-    public Integer getEjemplaresPrestados() {
+    public int getEjemplaresPrestados() {
         return ejemplaresPrestados;
     }
 
-    public void setEjemplaresPrestados(Integer ejemplaresPrestados) {
+    public void setEjemplaresPrestados(int ejemplaresPrestados) {
         this.ejemplaresPrestados = ejemplaresPrestados;
     }
 
-    public Integer getEjemplaresRestantes() {
+    public int getEjemplaresRestantes() {
         return ejemplaresRestantes;
     }
 
-    public void setEjemplaresRestantes(Integer ejemplaresRestantes) {
+    public void setEjemplaresRestantes(int ejemplaresRestantes) {
         this.ejemplaresRestantes = ejemplaresRestantes;
     }
 
@@ -108,7 +132,7 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{" + "isbn=" + isbn + ", titulo=" + titulo + ", anio=" + anio + ", ejemplares=" + ejemplares + ", ejemplaresPrestados=" + ejemplaresPrestados + ", ejemplaresRestantes=" + ejemplaresRestantes + ", alta=" + alta + ", autor=" + autor + ", editorial=" + editorial + '}';
+        return "Libro{" + "id=" + id + ", isbn=" + isbn + ", titulo=" + titulo + ", anio=" + anio + ", ejemplares=" + ejemplares + ", ejemplaresPrestados=" + ejemplaresPrestados + ", ejemplaresRestantes=" + ejemplaresRestantes + ", alta=" + alta + ", autor=" + autor + ", editorial=" + editorial + '}';
     }
-   
+
 }

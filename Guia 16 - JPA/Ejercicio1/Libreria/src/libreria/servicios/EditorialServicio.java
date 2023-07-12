@@ -54,6 +54,10 @@ public class EditorialServicio {
         return editorialDAO.buscarPorAlta(alta);
     }
     
+    public int recuento(){
+        return editorialDAO.getEditorialCount();
+    }
+    
     public void eliminar(int id) throws Exception{
         try{
             editorialDAO.eliminarPorId(id);

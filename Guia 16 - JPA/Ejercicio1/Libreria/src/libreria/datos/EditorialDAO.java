@@ -2,6 +2,9 @@
 package libreria.datos;
 
 import java.util.List;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import libreria.entidades.Editorial;
 
 public class EditorialDAO extends DAO{
@@ -58,22 +61,32 @@ public class EditorialDAO extends DAO{
             throw new Exception("Id invalido");
         }
         String idL = Integer.toString(id);
+        Editorial editorial = null;
         conectar();
-        Editorial editorial = (Editorial)em.createQuery("SELECT e FROM Editorial e WHERE e.id like :id")
+        try{ 
+            editorial = (Editorial)em.createQuery("SELECT e FROM Editorial e WHERE e.id like :id")
                 .setParameter("id", idL).getSingleResult();
-        desconectar();
-        return editorial;
+        }catch(Exception ex){
+        }finally{
+            desconectar();        
+            return editorial;
+        }
     }
     
     public Editorial buscarPorNombre(String nombre) throws Exception{
         if(nombre.isBlank()){
             throw new Exception("Nombre invalido");
         }
+        Editorial editorial = null;
         conectar();
-        Editorial editorial = (Editorial)em.createQuery("SELECT e FROM Editorial e WHERE e.nombre like :nombre")
+        try{ 
+            editorial = (Editorial)em.createQuery("SELECT e FROM Editorial e WHERE e.nombre like :nombre")
                 .setParameter("nombre", nombre).getSingleResult();
-        desconectar();
-        return editorial;
+        }catch(Exception ex){
+        }finally{
+            desconectar();        
+            return editorial;
+        }
     }
     
     public List<Editorial> buscarPorAlta(boolean alta){
@@ -84,5 +97,18 @@ public class EditorialDAO extends DAO{
         desconectar();
         return editoriales;
     }    
+    
+    public int getEditorialCount() {
+        try {
+            conectar();
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            Root<Editorial> rt = cq.from(Editorial.class);
+            cq.select(em.getCriteriaBuilder().count(rt));
+            Query q = em.createQuery(cq);
+            return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            desconectar();
+        }
+    }
     
 }

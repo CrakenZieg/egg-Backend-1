@@ -3,6 +3,9 @@ package libreria.datos;
 
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import libreria.entidades.Autor;
 import libreria.entidades.Editorial;
 import libreria.entidades.Libro;
@@ -39,11 +42,16 @@ public class LibroDAO extends DAO{
             throw new Exception("Id invalido");
         }
         String idL = Integer.toString(id);
+        Libro libro = null;
         conectar();
-        Libro libro = (Libro) em.createQuery("SELECT l FROM Libro l JOIN l.autor a JOIN l.editorial e WHERE l.id LIKE :id")
+        try{ 
+            libro = (Libro) em.createQuery("SELECT l FROM Libro l JOIN l.autor a JOIN l.editorial e WHERE l.id LIKE :id")
                 .setParameter("id", idL).getSingleResult();
-        desconectar();
-        return libro;
+        }catch(Exception ex){
+        }finally{
+            desconectar();        
+            return libro;
+        }
     }
     
     public Libro buscarPorISBN(long isbn) throws Exception{
@@ -51,11 +59,16 @@ public class LibroDAO extends DAO{
             throw new Exception("ISBN invalido");
         }
         String isbnL = Long.toString(isbn);
+        Libro libro = null;
         conectar();
-        Libro libro = (Libro) em.createQuery("SELECT l FROM Libro l JOIN l.autor a JOIN l.editorial e WHERE l.isbn LIKE :isbn")
+        try{ 
+            libro = (Libro) em.createQuery("SELECT l FROM Libro l JOIN l.autor a JOIN l.editorial e WHERE l.isbn LIKE :isbn")
                 .setParameter("isbn", isbnL).getSingleResult();
-        desconectar();
-        return libro;
+        }catch(Exception ex){
+        }finally{
+            desconectar();        
+            return libro;
+        }
     }
     
     public List<Libro> buscarPorNombre(String nombre) throws Exception{
@@ -156,6 +169,19 @@ public class LibroDAO extends DAO{
         List<Libro> libros = buscarPorEditorial(editorial);
         for (Libro libro : libros) {
             remover(libro);
+        }
+    }
+    
+    public int getLibroCount() {
+        try {
+            conectar();
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            Root<Libro> rt = cq.from(Libro.class);
+            cq.select(em.getCriteriaBuilder().count(rt));
+            Query q = em.createQuery(cq);
+            return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            desconectar();
         }
     }
     

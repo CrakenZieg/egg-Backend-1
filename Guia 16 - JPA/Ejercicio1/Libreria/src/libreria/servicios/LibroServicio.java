@@ -82,6 +82,10 @@ public class LibroServicio {
         return libroDAO.buscarPorEditorial(editorial);
     }
     
+    public int recuento(){
+        return libroDAO.getLibroCount();
+    }
+    
     public void eliminar(int id) throws Exception{
         libroDAO.eliminarPorId(id);
     }

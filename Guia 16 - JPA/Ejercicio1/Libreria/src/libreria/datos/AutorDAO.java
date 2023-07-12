@@ -2,6 +2,9 @@
 package libreria.datos;
 
 import java.util.List;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import libreria.entidades.Autor;
 
 public class AutorDAO extends DAO{
@@ -58,22 +61,32 @@ public class AutorDAO extends DAO{
             throw new Exception("Id invalido");
         }
         String idL = Integer.toString(id);
+        Autor autor = null;
         conectar();
-        Autor autor = (Autor)em.createQuery("SELECT a FROM Autor a WHERE a.id like :id")
+        try{ 
+            autor = (Autor)em.createQuery("SELECT a FROM Autor a WHERE a.id like :id")
                 .setParameter("id", idL).getSingleResult();
-        desconectar();
-        return autor;
+        }catch(Exception ex){
+        }finally{
+            desconectar();        
+            return autor;
+        }
     }
     
     public Autor buscarPorNombre(String nombre) throws Exception{
         if(nombre.isBlank()){
             throw new Exception("Nombre invalido");
         }
+        Autor autor = null;
         conectar();
-        Autor autor = (Autor)em.createQuery("SELECT a FROM Autor a WHERE a.nombre like :nombre")
-                .setParameter("nombre", nombre).getSingleResult();
-        desconectar();
-        return autor;
+        try{
+            autor = (Autor)em.createQuery("SELECT a FROM Autor a WHERE a.nombre like :nombre")
+                .setParameter("nombre", nombre).getSingleResult();  
+        }catch(Exception ex){
+        }finally{
+            desconectar();        
+            return autor;
+        }
     }
     
     public List<Autor> buscarPorAlta(boolean alta){
@@ -84,5 +97,18 @@ public class AutorDAO extends DAO{
         desconectar();
         return autores;
     }    
+    
+    public int getAutorCount() {
+        try {
+            conectar();
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            Root<Autor> rt = cq.from(Autor.class);
+            cq.select(em.getCriteriaBuilder().count(rt));
+            Query q = em.createQuery(cq);
+            return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            desconectar();
+        }
+    }
     
 }

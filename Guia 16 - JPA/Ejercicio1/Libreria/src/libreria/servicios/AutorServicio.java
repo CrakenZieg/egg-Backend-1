@@ -53,6 +53,10 @@ public class AutorServicio {
         return autorDAO.buscarPorAlta(alta);
     }
     
+    public int recuento(){
+        return autorDAO.getAutorCount();
+    }
+    
     public void eliminar(int id) throws Exception{
         try{
             autorDAO.eliminarPorId(id);

@@ -129,6 +129,26 @@ public class Libro {
     public void setEditorial(Editorial editorial) {
         this.editorial = editorial;
     }
+    
+    public boolean prestar(){
+        if(ejemplaresRestantes>0&&!(ejemplaresPrestados==ejemplares)){
+            ejemplaresRestantes--;
+            ejemplaresPrestados++;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean devolver(){
+        if(ejemplaresPrestados>0&&!(ejemplaresRestantes==ejemplares)){
+            ejemplaresPrestados--;
+            ejemplaresRestantes++;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     @Override
     public String toString() {

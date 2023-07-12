@@ -1,122 +1,486 @@
-
 package test;
 
 import java.nio.charset.StandardCharsets;
+import java.time.Year;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import libreria.entidades.Autor;
 import libreria.entidades.Editorial;
 import libreria.entidades.Libro;
+import libreria.servicios.AutorServicio;
 import libreria.servicios.EditorialServicio;
 import libreria.servicios.LibroServicio;
 
-public class test {          
-    
-    public static void main(String[] args) {        
-    
+public class test {
+
+    public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8).useDelimiter("\n");
-//        EntityManagerFactory factory = Persistence.createEntityManagerFactory("LibreriaPU");
-//        EntityManager em = factory.createEntityManager();
-       
+        Random rand = new Random();
+
+        AutorServicio autorServicio = new AutorServicio(sc);
         EditorialServicio editorialServicio = new EditorialServicio(sc);
-//        LibroServicio libroServicio = new LibroServicio();
-        
-        Editorial editorial = null;
+        LibroServicio libroServicio = new LibroServicio(sc, autorServicio, editorialServicio);
+
+        List<Autor> autores = null;
         List<Editorial> editoriales = null;
         List<Libro> libros = null;
         
-        try{
-//            libros = libroServicio.buscarAnio(2050);
-//            editoriales = editorialServicio.buscar(true);
-//            editorial = editorialServicio.buscar(4);
-            System.out.println(editorial);
-            if (editorial!=null){
-//                libros = libroServicio.buscar(editorial);
+        try {
+            Libro libro = libroServicio.buscar(777L);
+            if(libro!=null){
+                System.out.println(libro.toString());
+            } else {
+                System.out.println("Null pa");
             }
-        } catch(Exception ex){
+            
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             System.out.println("La agarro en main");
         }
+
+        String[] nombresLibros = {
+            "Cien años de soledad",
+            "1984",
+            "Don Quijote de la Mancha",
+            "Orgullo y prejuicio",
+            "En busca del tiempo perdido",
+            "Matar a un ruiseñor",
+            "Crimen y castigo",
+            "Ulises",
+            "Los miserables",
+            "Anna Karenina",
+            "El gran Gatsby",
+            "El principito",
+            "Rayuela",
+            "La Odisea",
+            "El amor en los tiempos del cólera",
+            "Hamlet",
+            "El retrato de Dorian Gray",
+            "La metamorfosis",
+            "Lolita",
+            "Crónica de una muerte anunciada",
+            "Los juegos del hambre",
+            "100 años de soledad",
+            "Harry Potter y la piedra filosofal",
+            "La sombra del viento",
+            "El Señor de los Anillos",
+            "El código Da Vinci",
+            "El Alquimista",
+            "El perfume",
+            "Rebelión en la granja",
+            "Los pilares de la Tierra",
+            "Romeo y Julieta",
+            "Drácula",
+            "Frankenstein",
+            "Fahrenheit 451",
+            "El diario de Ana Frank",
+            "El nombre del viento",
+            "Las aventuras de Tom Sawyer",
+            "La catedral del mar",
+            "Los hombres que no amaban a las mujeres",
+            "La guerra y la paz",
+            "Pedro Páramo",
+            "Los hermanos Karamazov",
+            "La iliada",
+            "Alicia en el país de las maravillas",
+            "Moby Dick",
+            "Las mil y una noches",
+            "El guardián entre el centeno",
+            "El viejo y el mar",
+            "Madame Bovary",
+            "La vuelta al mundo en 80 días",
+            "El gato negro",
+            "Cumbres borrascosas",
+            "Veinte mil leguas de viaje submarino",
+            "El castillo",
+            "La Divina Comedia",
+            "Los cuatro jinetes del Apocalipsis",
+            "El extranjero",
+            "Oliver Twist",
+            "David Copperfield",
+            "La naranja mecánica",
+            "La ladrona de libros",
+            "La montaña mágica",
+            "La casa de los espíritus",
+            "El señor de las moscas",
+            "Ve y pon un centinela",
+            "Los hombres que no amaban a las mujeres",
+            "Cincuenta sombras de Grey",
+            "La chica del tren",
+            "Yo antes de ti",
+            "La ladrona de libros",
+            "La historia interminable",
+            "El principito",
+            "La caverna",
+            "La sombra del viento",
+            "El fuego invisible",
+            "Los ojos amarillos de los cocodrilos",
+            "Los santos inocentes",
+            "Lo que el viento se llevó",
+            "El jardín olvidado",
+            "El niño con el pijama de rayas",
+            "El último adiós",
+            "Los hombres que no amaban a las mujeres",
+            "Cien años de soledad",
+            "1984",
+            "Don Quijote de la Mancha",
+            "Orgullo y prejuicio",
+            "En busca del tiempo perdido",
+            "Matar a un ruiseñor",
+            "Crimen y castigo",
+            "Ulises",
+            "Los miserables",
+            "Anna Karenina",
+            "El gran Gatsby",
+            "El principito",
+            "Rayuela",
+            "La Odisea",
+            "El amor en los tiempos del cólera",
+            "Hamlet",
+            "El retrato de Dorian Gray",
+            "La metamorfosis",
+            "Lolita",
+            "Crónica de una muerte anunciada",
+            "Los juegos del hambre",
+            "100 años de soledad",
+            "Harry Potter y la piedra filosofal",
+            "La sombra del viento",
+            "El Señor de los Anillos",
+            "El código Da Vinci",
+            "El Alquimista",
+            "El perfume",
+            "Rebelión en la granja",
+            "Los pilares de la Tierra",
+            "Romeo y Julieta",
+            "Drácula",
+            "Frankenstein",
+            "Fahrenheit 451",
+            "El diario de Ana Frank",
+            "El nombre del viento",
+            "Las aventuras de Tom Sawyer",
+            "La catedral del mar",
+            "Los hombres que no amaban a las mujeres",
+            "La guerra y la paz",
+            "Pedro Páramo",
+            "Los hermanos Karamazov",
+            "La iliada",
+            "Alicia en el país de las maravillas",
+            "Moby Dick",
+            "Las mil y una noches",
+            "El guardián entre el centeno",
+            "El viejo y el mar",
+            "Madame Bovary",
+            "La vuelta al mundo en 80 días",
+            "El gato negro",
+            "Cumbres borrascosas",
+            "Veinte mil leguas de viaje submarino",
+            "El castillo",
+            "La Divina Comedia",
+            "Los cuatro jinetes del Apocalipsis",
+            "El extranjero",
+            "Oliver Twist",
+            "David Copperfield",
+            "La naranja mecánica",
+            "La ladrona de libros",
+            "La montaña mágica",
+            "La casa de los espíritus",
+            "El señor de las moscas",
+            "Ve y pon un centinela",
+            "Los hombres que no amaban a las mujeres",
+            "Cincuenta sombras de Grey",
+            "La chica del tren",
+            "Yo antes de ti",
+            "La ladrona de libros",
+            "La historia interminable",
+            "El principito",
+            "La caverna",
+            "La sombra del viento",
+            "El fuego invisible",
+            "Los ojos amarillos de los cocodrilos",
+            "Los santos inocentes",
+            "Lo que el viento se llevó",
+            "El jardín olvidado",
+            "El niño con el pijama de rayas",
+            "El último adiós",
+            "Los hombres que no amaban a las mujeres"
+        };
+        String[] nombresAutores = {
+            "Gabriel García Márquez",
+            "George Orwell",
+            "Miguel de Cervantes Saavedra",
+            "Jane Austen",
+            "Marcel Proust",
+            "Harper Lee",
+            "Fyodor Dostoyevsky",
+            "James Joyce",
+            "Victor Hugo",
+            "Leo Tolstoy",
+            "F. Scott Fitzgerald",
+            "Antoine de Saint-Exupéry",
+            "Julio Cortázar",
+            "Homero",
+            "Gabriel García Márquez",
+            "William Shakespeare",
+            "Oscar Wilde",
+            "Franz Kafka",
+            "Vladimir Nabokov",
+            "Gabriel García Márquez",
+            "Suzanne Collins",
+            "Gabriel García Márquez",
+            "J.K. Rowling",
+            "Carlos Ruiz Zafón",
+            "J.R.R. Tolkien",
+            "Dan Brown",
+            "Paulo Coelho",
+            "Patrick Süskind",
+            "George Orwell",
+            "Ken Follett",
+            "William Shakespeare",
+            "Bram Stoker",
+            "Mary Shelley",
+            "Ray Bradbury",
+            "Ana Frank",
+            "Patrick Rothfuss",
+            "Mark Twain",
+            "Ildefonso Falcones",
+            "Stieg Larsson",
+            "Leo Tolstoy",
+            "Juan Rulfo",
+            "Fyodor Dostoyevsky",
+            "Homero",
+            "Lewis Carroll",
+            "Herman Melville",
+            "Anónimo",
+            "J.D. Salinger",
+            "Ernest Hemingway",
+            "Gustave Flaubert",
+            "Julio Verne",
+            "Edgar Allan Poe",
+            "Emily Brontë",
+            "Julio Verne",
+            "Franz Kafka",
+            "Dante Alighieri",
+            "Vicente Blasco Ibáñez",
+            "Albert Camus",
+            "Charles Dickens",
+            "Charles Dickens",
+            "Dan Brown",
+            "Anthony Burgess",
+            "Ken Follett",
+            "Bram Stoker",
+            "Fyodor Dostoyevsky",
+            "Markus Zusak",
+            "Thomas Mann",
+            "Isabel Allende",
+            "William Golding",
+            "Harper Lee",
+            "Gabriel García Márquez",
+            "Homero",
+            "Homero",
+            "Isaac Asimov",
+            "Salman Rushdie",
+            "José Saramago",
+            "Jorge Luis Borges",
+            "Julio Verne",
+            "Laura Gallego García",
+            "Roberto Bolaño",
+            "Yuval Noah Harari",
+            "Dante Gebel",
+            "Gabriel García Márquez",
+            "Stieg Larsson",
+            "Suzanne Collins",
+            "Suzanne Collins",
+            "Suzanne Collins",
+            "Paulo Coelho",
+            "Hermann Hesse",
+            "Hermann Hesse",
+            "John Green",
+            "Alexandre Dumas",
+            "Gabriel García Márquez",
+            "Dante Gebel",
+            "Ernest Cline",
+            "Michael Ende",
+            "Antoine de Saint-Exupéry",
+            "José Saramago",
+            "Carlos Ruiz Zafón",
+            "Javier Sierra",
+            "Katherine Pancol",
+            "Miguel Delibes",
+            "Margaret Mitchell",
+            "Kate Morton",
+            "John Boyne",
+            "Kate Morton",
+            "Stieg Larsson",
+            "Gabriel García Márquez",
+            "George Orwell",
+            "Miguel de Cervantes Saavedra",
+            "Jane Austen",
+            "Marcel Proust",
+            "Harper Lee",
+            "Fyodor Dostoyevsky",
+            "James Joyce",
+            "Victor Hugo",
+            "Leo Tolstoy",
+            "F. Scott Fitzgerald",
+            "Antoine de Saint-Exupéry",
+            "Julio Cortázar",
+            "Homero",
+            "Gabriel García Márquez",
+            "William Shakespeare",
+            "Oscar Wilde",
+            "Franz Kafka",
+            "Vladimir Nabokov",
+            "Gabriel García Márquez",
+            "Suzanne Collins",
+            "Gabriel García Márquez",
+            "J.K. Rowling",
+            "Carlos Ruiz Zafón",
+            "J.R.R. Tolkien",
+            "Dan Brown",
+            "Paulo Coelho",
+            "Patrick Süskind",
+            "George Orwell",
+            "Ken Follett",
+            "William Shakespeare",
+            "Bram Stoker",
+            "Mary Shelley",
+            "Ray Bradbury",
+            "Ana Frank",
+            "Patrick Rothfuss",
+            "Mark Twain",
+            "Ildefonso Falcones",
+            "Stieg Larsson",
+            "Leo Tolstoy",
+            "Juan Rulfo",
+            "Fyodor Dostoyevsky",
+            "Homero",
+            "Lewis Carroll",
+            "Herman Melville",
+            "Anónimo",
+            "J.D. Salinger",
+            "Ernest Hemingway",
+            "Gustave Flaubert",
+            "Julio Verne",
+            "Edgar Allan Poe",
+            "Emily Brontë",
+            "Julio Verne",
+            "Franz Kafka",
+            "Dante Alighieri",
+            "Vicente Blasco Ibáñez",
+            "Albert Camus",
+            "Charles Dickens",
+            "Charles Dickens",
+            "Dan Brown",
+            "Anthony Burgess",
+            "Ken Follett",
+            "Bram Stoker",
+            "Fyodor Dostoyevsky",
+            "Markus Zusak",
+            "Thomas Mann",
+            "Isabel Allende",
+            "William Golding",
+            "Harper Lee",
+            "Gabriel García Márquez",
+            "Homero",
+            "Homero",
+            "Isaac Asimov",
+            "Salman Rushdie",
+            "José Saramago",
+            "Jorge Luis Borges",
+            "Julio Verne",
+            "Laura Gallego García",
+            "Roberto Bolaño",
+            "Yuval Noah Harari",
+            "Dante Gebel",
+            "Gabriel García Márquez",
+            "Stieg Larsson",
+            "Suzanne Collins",
+            "Suzanne Collins",
+            "Suzanne Collins",
+            "Paulo Coelho",
+            "Hermann Hesse",
+            "Hermann Hesse",
+            "John Green",
+            "Alexandre Dumas",
+            "Gabriel García Márquez",
+            "Dante Gebel",
+            "Ernest Cline",
+            "Michael Ende",
+            "Antoine de Saint-Exupéry",
+            "José Saramago",
+            "Carlos Ruiz Zafón",
+            "Javier Sierra",
+            "Katherine Pancol",
+            "Miguel Delibes",
+            "Margaret Mitchell",
+            "Kate Morton",
+            "John Boyne",
+            "Kate Morton",
+            "Stieg Larsson"
+        };
+
+        String[] nombresEditoriales = {
+            "Penguin Random House",
+            "HarperCollins",
+            "Simon & Schuster",
+            "Macmillan Publishers",
+            "Hachette Livre",
+            "Wiley",
+            "Scholastic",
+            "Pearson Education",
+            "Oxford University Press",
+            "Cambridge University Press",
+            "Elsevier",
+            "Springer",
+            "MIT Press",
+            "Bloomsbury Publishing",
+            "Penguin Books",
+            "Vintage Books",
+            "Random House",
+            "Grove Atlantic",
+            "Farrar, Straus and Giroux",
+            "McGraw-Hill Education"
+        };
         
-        
-        
-        if (libros!=null){
-            for (Libro libro : libros) {
-                System.out.println(libro);
-            }
-        }
-        
-        if (editoriales!=null){
-            for (Editorial editor : editoriales) {
-                System.out.println(editor);
-            }
-        } else {
-            System.out.println(editoriales);
-            System.out.println("Editoriales es NULL");
-        }
+//        crear(autorServicio,editorialServicio,libroServicio,nombresLibros,nombresAutores,nombresEditoriales,rand);
+
     }
     
+    public static void crear(AutorServicio autorServicio,EditorialServicio editorialServicio,LibroServicio libroServicio,
+            String[] nombresLibros,String[] nombresAutores,String[] nombresEditoriales, Random rand){
+//        for (String nombresEditorial : nombresEditoriales) {
+//            try {
+//                editorialServicio.guardar(nombresEditorial, Boolean.TRUE);
+//            } catch (Exception ex) {
+//                System.out.println(ex.getMessage());
+//            }
+//        }
+        for (int i = 0; i<nombresLibros.length;i++) {   
+            Autor autor = null;
+            try {
+                if(autorServicio.buscar(nombresAutores[i])!=null){
+                    autor = autorServicio.buscar(nombresAutores[i]);
+                } else {
+                    autor = autorServicio.guardar(nombresAutores[i], Boolean.TRUE);
+                }
+                int ejemplares = rand.nextInt(2,16);
+                libroServicio.guardar(rand.nextLong( 99999999), nombresLibros[i], 
+                        rand.nextInt(1000, 2023), 
+                        ejemplares, 
+                        0,
+                        ejemplares, 
+                        Boolean.TRUE, 
+                        autor, 
+                        editorialServicio.buscar(rand.nextInt(1, editorialServicio.recuento()+1)));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }       
+    }
+
 }
-/*
-EntityManagerFactory factory = Persistence.createEntityManagerFactory("LibreriaPU");
-        EntityManager em = factory.createEntityManager();
-        em.getTransaction().begin();
-        List<Libro> libros = em.createQuery("SELECT l FROM Libro l JOIN l.autor a JOIN l.editorial e")
-                .getResultList();
-        em.close();
-        for (Libro libro : libros) {
-            System.out.println(libro);
-        }
-        
-Random rand = new Random();
-EntityManagerFactory factory = Persistence.createEntityManagerFactory("LibreriaPU");
-EntityManager em = factory.createEntityManager();
-
-try{
-    Autor autor1 = new Autor(1, "Gato", true);
-    Autor autor2 = new Autor(2, "Mau", true);
-    Autor autor3 = new Autor(3, "Peludo", true);
-    Editorial editorial1 = new Editorial(1, "Editorial Felina", true);
-    Editorial editorial2 = new Editorial(2, "Editorial Gatuna", true);
-    Editorial editorial3 = new Editorial(3, "Editorial Peluda", true);
-    Libro libro1 = new Libro(rand.nextLong(999999, 9999999), "Gatos vol. I", 1900,
-            10, 3, 7, true, autor1, editorial1);
-    Libro libro2 = new Libro(rand.nextLong(999999, 9999999), "Gatos vol. II", 1900,
-            10, 4, 6, true, autor1, editorial1);
-    Libro libro3 = new Libro(rand.nextLong(999999, 9999999), "Gatos vol. III", 1900,
-            10, 5,5, true, autor1, editorial1);
-    Libro libro4 = new Libro(rand.nextLong(999999, 9999999), "Maullidos vol. I", 1900,
-            10, 3, 7, true, autor2, editorial2);
-    Libro libro5 = new Libro(rand.nextLong(999999, 9999999), "Maullidos vol. II", 1900,
-            10, 4, 6, true, autor2, editorial2);
-    Libro libro6 = new Libro(rand.nextLong(999999, 9999999), "Maullidos vol. III", 1900,
-            10, 5,5, true, autor2, editorial2);
-    Libro libro7 = new Libro(rand.nextLong(999999, 9999999), "Peludos vol. I", 1900,
-            10, 3, 7, true, autor3, editorial3);
-    Libro libro8 = new Libro(rand.nextLong(999999, 9999999), "Peludos vol. II", 1900,
-            10, 4, 6, true, autor3, editorial3);
-    Libro libro9 = new Libro(rand.nextLong(999999, 9999999), "Peludos vol. III", 1900,
-            10, 5,5, true, autor3, editorial3);
-
-    em.getTransaction().begin();
-    em.persist(autor1);
-    em.persist(autor2);
-    em.persist(autor3);
-    em.persist(editorial1);
-    em.persist(editorial2);
-    em.persist(editorial3);
-    em.persist(libro1);
-    em.persist(libro2);
-    em.persist(libro3);
-    em.persist(libro4);
-    em.persist(libro5);
-    em.persist(libro6);
-    em.persist(libro7);
-    em.persist(libro8);
-    em.persist(libro9);
-    em.getTransaction().commit();
-
-
-}catch(Exception ex){
-    System.out.println(ex.getMessage());
-}
-*/

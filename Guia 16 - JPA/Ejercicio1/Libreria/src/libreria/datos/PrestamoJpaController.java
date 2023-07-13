@@ -2,20 +2,25 @@
 package libreria.datos;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
+import javax.persistence.TemporalType;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import libreria.datos.exceptions.NonexistentEntityException;
+import libreria.entidades.Cliente;
+import libreria.entidades.Libro;
 import libreria.entidades.Prestamo;
 
 public class PrestamoJpaController implements Serializable {
 
-    public PrestamoJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public PrestamoJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("LibreriaPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -113,6 +118,49 @@ public class PrestamoJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public List<Prestamo> findPrestamoByLibro(Libro libro) {
+        EntityManager em = getEntityManager();
+        List<Prestamo> prestamos = null;
+        String id = Integer.toString(libro.getId());
+        try {
+            prestamos = em.createQuery("SELECT p FROM Prestamo p JOIN p.libro l WHERE l.id LIKE :id")
+                .setParameter("idL", id).getResultList();
+        } catch(Exception ex){
+        } finally {
+            em.close();
+            return prestamos;
+        }
+    }
+    
+    public List<Prestamo> findPrestamoByCliente(Cliente Cliente) {
+        EntityManager em = getEntityManager();
+        List<Prestamo> prestamos = null;
+        String id = Integer.toString(Cliente.getId());
+        try {
+            prestamos = em.createQuery("SELECT p FROM Prestamo p JOIN p.Cliente c WHERE c.id LIKE :id")
+                .setParameter("idL", id).getResultList();
+        } catch(Exception ex){
+        } finally {
+            em.close();
+            return prestamos;
+        }
+    }
+    
+    public List<Prestamo> findPrestamoByFecha(Date inicio, Date finalizacion){
+        EntityManager em = getEntityManager();
+        List<Prestamo> prestamos = null;
+        try {
+            prestamos = em.createQuery("SELECT p FROM Prestamo p WHERE p.fechaPrestamo BETWEEN :inicio AND :finalizacion")
+                .setParameter("inicio", inicio, TemporalType.DATE)
+                .setParameter("finalizacion", finalizacion, TemporalType.DATE)
+                .getResultList();
+        } catch(Exception ex){
+        } finally {
+            em.close();
+            return prestamos;
+        }
+    }    
 
     public int getPrestamoCount() {
         EntityManager em = getEntityManager();

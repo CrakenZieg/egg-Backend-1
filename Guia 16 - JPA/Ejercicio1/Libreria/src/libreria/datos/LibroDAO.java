@@ -10,7 +10,7 @@ import libreria.entidades.Autor;
 import libreria.entidades.Editorial;
 import libreria.entidades.Libro;
 
-public class LibroDAO extends DAO{
+public class LibroDAO extends DAO<Libro>{
 
     public LibroDAO() {
     }
@@ -22,6 +22,7 @@ public class LibroDAO extends DAO{
         persistir(libro);
     }
     
+    @Override
     public void actualizar(Libro libro) throws Exception{
         if(libro==null){
             throw new Exception("Libro invalido");

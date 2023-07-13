@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import libreria.datos.exceptions.NonexistentEntityException;
@@ -14,8 +15,8 @@ import libreria.entidades.Cliente;
 
 public class ClienteJpaController implements Serializable {
 
-    public ClienteJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public ClienteJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("LibreriaPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -113,6 +114,19 @@ public class ClienteJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public Cliente findClienteByDocumento(Long dni){
+        EntityManager em = getEntityManager();
+        String dniL = Long.toString(dni);
+        Cliente cliente = null;
+        try {
+            cliente = (Cliente)em.createQuery("SELECT c FROM Cliente c WHERE c.documento like :dniL")
+                .setParameter("dniL", dniL).getSingleResult();            
+        } finally {
+            em.close();
+            return cliente;
+        }
+    }
 
     public int getClienteCount() {
         EntityManager em = getEntityManager();
@@ -126,5 +140,7 @@ public class ClienteJpaController implements Serializable {
             em.close();
         }
     }
+    
+    
     
 }

@@ -7,7 +7,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import libreria.entidades.Autor;
 
-public class AutorDAO extends DAO{
+public class AutorDAO extends DAO<Autor>{
     
     LibroDAO libroDAO = new LibroDAO();
 
@@ -21,6 +21,7 @@ public class AutorDAO extends DAO{
         persistir(autor);
     }
     
+    @Override
     public void actualizar(Autor autor) throws Exception{
         if(autor==null){
             throw new Exception("Autor invalido");

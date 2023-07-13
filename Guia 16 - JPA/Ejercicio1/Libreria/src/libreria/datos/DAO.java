@@ -3,12 +3,12 @@ package libreria.datos;
 
 import javax.persistence.*;
 
-public abstract class DAO {
+public abstract class DAO<T> {
     
     protected EntityManagerFactory factory = Persistence.createEntityManagerFactory("LibreriaPU");
     protected EntityManager em = factory.createEntityManager();
     
-    protected void persistir(Object obj){        
+    protected void persistir(T obj) throws Exception{        
         conectar();
         em.getTransaction().begin();
         em.persist(obj);
@@ -16,19 +16,18 @@ public abstract class DAO {
         desconectar();        
     }
     
-    protected void remover(Object obj){       
+    protected void remover(T obj) throws Exception{       
         conectar();
         em.getTransaction().begin();
-        Object enContexto = obj;
-        if (!em.contains(obj)) {
-            enContexto = em.merge(obj);
-        }
-        em.remove(enContexto);
+        
+        obj = em.merge(obj);
+        
+        em.remove(obj);
         em.getTransaction().commit();
         desconectar();        
     }
     
-    protected void actualizar(Object obj){        
+    protected void actualizar(T obj) throws Exception{        
         conectar();
         em.getTransaction().begin();
         em.merge(obj);

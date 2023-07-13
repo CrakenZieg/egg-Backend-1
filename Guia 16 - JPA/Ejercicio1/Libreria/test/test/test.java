@@ -3,14 +3,19 @@ package test;
 import java.nio.charset.StandardCharsets;
 import java.time.Year;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import libreria.datos.ClienteJpaController;
+import libreria.datos.PrestamoJpaController;
 import libreria.entidades.Autor;
+import libreria.entidades.Cliente;
 import libreria.entidades.Editorial;
 import libreria.entidades.Libro;
+import libreria.entidades.Prestamo;
 import libreria.servicios.AutorServicio;
 import libreria.servicios.EditorialServicio;
 import libreria.servicios.LibroServicio;
@@ -25,25 +30,133 @@ public class test {
         AutorServicio autorServicio = new AutorServicio(sc);
         EditorialServicio editorialServicio = new EditorialServicio(sc);
         LibroServicio libroServicio = new LibroServicio(sc, autorServicio, editorialServicio);
+        ClienteJpaController clienteJpa = new ClienteJpaController();
+        PrestamoJpaController prestamoJpa = new PrestamoJpaController();
 
-        List<Autor> autores = null;
-        List<Editorial> editoriales = null;
-        List<Libro> libros = null;
-        
-        try {
-            Libro libro = libroServicio.buscar(777L);
-            if(libro!=null){
-                System.out.println(libro.toString());
-            } else {
-                System.out.println("Null pa");
+//        List<Autor> autores = null;
+//        List<Editorial> editoriales = null;
+//        List<Libro> libros = null;
+//        try {
+//            Libro libro = libroServicio.buscar(777L);
+//            if(libro!=null){
+//                System.out.println(libro.toString());
+//            } else {
+//                System.out.println("Null pa");
+//            }
+//            
+//        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//            System.out.println("La agarro en main");
+//        }
+//        crear(autorServicio,editorialServicio,libroServicio,nombresLibros,nombresAutores,nombresEditoriales,rand);
+//        for(int i = 0; i<100; i++){
+//            crearClientes(rand, nombresAutores, clienteJpa);
+//        }
+
+//        crearPrestamo(rand, libroServicio, clienteJpa, prestamoJpa, 150);
+    }
+    
+    /*
+    (Date fechaPrestamo, Date fechaDevolucion, Libro libro, Cliente cliente)
+     */
+    public static void crearPrestamo(Random rand, LibroServicio libroServicio, ClienteJpaController clienteJpa, PrestamoJpaController prestamoJpa, int n){
+        List<Libro> biblio = libroServicio.buscar();
+        List<Cliente> clientes = clienteJpa.findClienteEntities();
+        for(int i = 0; i < n; i++){
+            int anio = 2023-rand.nextInt(0, 6);
+            int mes = rand.nextInt(0, 12);
+            int dia = rand.nextInt(1, 32);
+            Calendar inicio = Calendar.getInstance();
+            inicio.set(anio, mes, dia);
+            Calendar finalizacion = Calendar.getInstance();
+            int tiempo = rand.nextInt(2, 14);
+    //        if(dia+tiempo>31){
+    //            if(mes+1>11){
+    //                mes = 0;
+    //                anio++;
+    //                dia = dia+tiempo-31;
+    //            }else{
+    //                mes++;
+    //                dia = dia+tiempo-31;
+    //            }            
+    //        } else {
+    //            dia += tiempo;
+    //        }
+            finalizacion.set(anio, mes, dia);
+            finalizacion.add(Calendar.DAY_OF_MONTH, tiempo);         
+            Cliente cliente = clientes.get(rand.nextInt(0, clientes.size()));
+            Libro libro;
+            do{
+                libro = biblio.get(rand.nextInt(0, biblio.size()));
+            }while(!libro.prestar());        
+            Prestamo prestamo = new Prestamo(inicio.getTime(), finalizacion.getTime(), libro, cliente);
+            try {
+                prestamoJpa.create(prestamo);
+            } catch(Exception ex){
+                System.out.println(ex.getMessage());
             }
-            
+        }
+    }
+
+    public static void crearClientes(Random rand, String[] nombresAutores, ClienteJpaController clienteJpa) {
+        Long documento = rand.nextLong(0, 10000000);
+        String nombre = getStringR(nombresAutores, rand);
+        String apellido = getStringR(nombresAutores, rand);
+        Long telefono = rand.nextLong(150000000, 160000000);
+        Cliente cliente = new Cliente(documento, nombre, apellido, telefono.toString());
+        try {
+            clienteJpa.create(cliente);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("La agarro en main");
+            System.out.println("Algo fallo!");
+        }
+    }
+
+    public static String getStringR(String[] nombresAutores, Random rand) {
+        String[] nombre = nombresAutores[rand.nextInt(0, nombresAutores.length)].split(" ");
+        if (nombre.length == 1) {
+            return nombre[0];
+        } else {
+            return nombre[rand.nextInt(0, nombre.length)];
         }
 
-        String[] nombresLibros = {
+    }
+
+    public static void crear(AutorServicio autorServicio, EditorialServicio editorialServicio, LibroServicio libroServicio,
+            String[] nombresLibros, String[] nombresAutores, String[] nombresEditoriales, Random rand) {
+//        for (String nombresEditorial : nombresEditoriales) {
+//            try {
+//                editorialServicio.guardar(nombresEditorial, Boolean.TRUE);
+//            } catch (Exception ex) {
+//                System.out.println(ex.getMessage());
+//            }
+//        }
+        for (int i = 0; i < nombresLibros.length; i++) {
+            Autor autor = null;
+            try {
+                if (autorServicio.buscar(nombresAutores[i]) != null) {
+                    autor = autorServicio.buscar(nombresAutores[i]);
+                } else {
+                    autor = autorServicio.guardar(nombresAutores[i], Boolean.TRUE);
+                }
+                int ejemplares = rand.nextInt(2, 16);
+                libroServicio.guardar(rand.nextLong(99999999), nombresLibros[i],
+                        rand.nextInt(1000, 2023),
+                        ejemplares,
+                        0,
+                        ejemplares,
+                        Boolean.TRUE,
+                        autor,
+                        editorialServicio.buscar(rand.nextInt(1, editorialServicio.recuento() + 1)));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+}
+
+/*
+String[] nombresLibros = {
             "Cien años de soledad",
             "1984",
             "Don Quijote de la Mancha",
@@ -209,6 +322,7 @@ public class test {
             "El último adiós",
             "Los hombres que no amaban a las mujeres"
         };
+        
         String[] nombresAutores = {
             "Gabriel García Márquez",
             "George Orwell",
@@ -446,41 +560,4 @@ public class test {
             "Farrar, Straus and Giroux",
             "McGraw-Hill Education"
         };
-        
-//        crear(autorServicio,editorialServicio,libroServicio,nombresLibros,nombresAutores,nombresEditoriales,rand);
-
-    }
-    
-    public static void crear(AutorServicio autorServicio,EditorialServicio editorialServicio,LibroServicio libroServicio,
-            String[] nombresLibros,String[] nombresAutores,String[] nombresEditoriales, Random rand){
-//        for (String nombresEditorial : nombresEditoriales) {
-//            try {
-//                editorialServicio.guardar(nombresEditorial, Boolean.TRUE);
-//            } catch (Exception ex) {
-//                System.out.println(ex.getMessage());
-//            }
-//        }
-        for (int i = 0; i<nombresLibros.length;i++) {   
-            Autor autor = null;
-            try {
-                if(autorServicio.buscar(nombresAutores[i])!=null){
-                    autor = autorServicio.buscar(nombresAutores[i]);
-                } else {
-                    autor = autorServicio.guardar(nombresAutores[i], Boolean.TRUE);
-                }
-                int ejemplares = rand.nextInt(2,16);
-                libroServicio.guardar(rand.nextLong( 99999999), nombresLibros[i], 
-                        rand.nextInt(1000, 2023), 
-                        ejemplares, 
-                        0,
-                        ejemplares, 
-                        Boolean.TRUE, 
-                        autor, 
-                        editorialServicio.buscar(rand.nextInt(1, editorialServicio.recuento()+1)));
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-        }       
-    }
-
-}
+ */

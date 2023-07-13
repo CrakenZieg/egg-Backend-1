@@ -7,7 +7,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import libreria.entidades.Editorial;
 
-public class EditorialDAO extends DAO{
+public class EditorialDAO extends DAO<Editorial>{
 
     LibroDAO libroDAO = new LibroDAO();
     
@@ -21,6 +21,7 @@ public class EditorialDAO extends DAO{
         persistir(editorial);
     }
     
+    @Override
     public void actualizar(Editorial editorial) throws Exception{
         if(editorial==null){
             throw new Exception("Editorial invalido");

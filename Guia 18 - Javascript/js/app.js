@@ -148,16 +148,16 @@ function ejercicio8() {
         if (num == 0) {
             break;
         } else
-        if (max == null || min == null) {
-            max = num;
-            min = num;
-        } else
-        if (num > max) {
-            max = num;
-        } else
-        if (num < min) {
-            min = num;
-        }
+            if (max == null || min == null) {
+                max = num;
+                min = num;
+            } else
+                if (num > max) {
+                    max = num;
+                } else
+                    if (num < min) {
+                        min = num;
+                    }
         numeros.push(num);
         promedio += num;
     } while (num != 0);
@@ -197,7 +197,7 @@ function ejercicio10() {
 
 let reversa = (frase) => {
     let fraseArr = frase.split("");
-    let retorno = fraseArr.reduce((a,b)=>{return a+b});
+    let retorno = fraseArr.reduce((a, b) => { return a + b });
     /*let retorno = "";
     for (let i = 0; i < fraseArr.length; i++) {
         retorno = retorno.concat(fraseArr[fraseArr.length-1-i]);
@@ -291,7 +291,7 @@ function ejercicio14() {
     }
     alert(libroString);
 }
-function crearLibro(){
+function crearLibro() {
     let isbn, titulo, autor, numeroPags;
     isbn = cargaValida('isbn');
     titulo = cargaValida('título');
@@ -300,11 +300,11 @@ function crearLibro(){
     let libro = new Libro(isbn, titulo, autor, numeroPags);
     return libro;
 }
-function cargaValida(param){
+function cargaValida(param) {
     let retorno;
-    do{
+    do {
         retorno = prompt(`Ingrese el ${param}:`);
-    } while (retorno==null||retorno==="");
+    } while (retorno == null || retorno === "");
     return retorno;
 }
 
@@ -314,17 +314,17 @@ function cargaValida(param){
     círculo lo proporcionará el usuario. 
 */
 
-function ejercicio15(){
+function ejercicio15() {
     let radio = prompt("Introduce el radio:");
     let area = areaCirculo(radio);
     let perimetro = perimetroCirculo(radio);
     alert(`Para un circulo de radio ${radio} su area es ${area} y su perímetro es ${perimetro}`);
 }
-function areaCirculo(radio){
-    return Math.PI*Math.pow(radio,2);
+function areaCirculo(radio) {
+    return Math.PI * Math.pow(radio, 2);
 }
-function perimetroCirculo(radio){
-    return Math.PI*radio*2;
+function perimetroCirculo(radio) {
+    return Math.PI * radio * 2;
 }
 
 /*16 
@@ -332,18 +332,18 @@ function perimetroCirculo(radio){
     muestre por pantalla. 
 */
 
-function ejercicio16(){
+function ejercicio16() {
     let vector1 = [];
     let vector2 = [];
     let n = 5;
-    llenarArreglo(vector1,n,100);
-    llenarArreglo(vector2,n,100);
+    llenarArreglo(vector1, n, 100);
+    llenarArreglo(vector2, n, 100);
     alert(`Vector1: [${vector1.toString()}]\nVector2: [${vector2.toString()}]`);
 }
 
-let llenarArreglo = (arr,n,max)=>{
-    for(let i=0; i<n; i++){
-        arr[i]=Math.floor(Math.random()*(max+1));
+let llenarArreglo = (arr, n, max) => {
+    for (let i = 0; i < n; i++) {
+        arr[i] = Math.floor(Math.random() * (max + 1));
     }
 }
 
@@ -351,22 +351,22 @@ let llenarArreglo = (arr,n,max)=>{
     Realizar un programa que elimine los dos últimos elementos de un array. Mostrar el resultado
 */
 
-function ejercicio17(){
+function ejercicio17() {
     let n = Number.parseInt(prompt("Ingresa el tamaño del arreglo (n>=1):"));
-    let arr = []; 
-    llenarArreglo(arr,n,100);
+    let arr = [];
+    llenarArreglo(arr, n, 100);
     alert(`Original: [${arr.toString()}]`);
-    switch (n){
-        case 1:{
+    switch (n) {
+        case 1: {
             arr.pop();
             break;
         }
-        default:{
-            arr.splice(arr.length-2,2);            
+        default: {
+            arr.splice(arr.length - 2, 2);
             break;
         }
-    };    
-    alert(`Resultado: [${arr.toString()}]`);    
+    };
+    alert(`Resultado: [${arr.toString()}]`);
 }
 
 /*18 
@@ -378,23 +378,173 @@ function ejercicio17(){
     numéricos 
 */
 
-function ejercicio18(){
+function ejercicio18() {
     var valores = [true, 5, false, "hola", "adios", 2];
-    
+
 }
 
-/* 19. Realizar un programa en Java donde se creen dos arreglos: el primero será un arreglo A de 50 números reales, y el segundo B, un arreglo de 20 números, también reales. El programa deberá inicializar el arreglo A con números aleatorios y mostrarlo por pantalla. Luego, el arreglo A se debe ordenar de menor a mayor y copiar los primeros 10 números ordenados al arreglo B de 20 elementos, y rellenar los 10 últimos elementos con el valor 0.5. Mostrar los dos arreglos resultantes: el ordenado de 50 elementos y el combinado de 20.    */
-
-/* 20. Realizar un programa que obtenga la siguiente matriz [[3], [6], [9], [12], [15]] y devuelve y muestre el siguiente array [6, 9, 12, 15, 18]. */
-
-/* 21. Escribir un programa para obtener un array de las propiedades de un objeto Persona. Las propiedades son nombre, edad, sexo ('H' hombre, 'M' mujer, 'O' otro), peso y altura. */
-
-/* 22. Escribir un programa de JavaScript que al clickear un botón muestre un mensaje a elección.
-
+/*19 
+    Realizar un programa en Java donde se creen dos arreglos: el primero será un arreglo A de 50 
+    números reales, y el segundo B, un arreglo de 20 números, también reales. El programa deberá inicializar 
+    el arreglo A con números aleatorios y mostrarlo por pantalla. Luego, el arreglo A se debe ordenar de 
+    menor a mayor y copiar los primeros 10 números ordenados al arreglo B de 20 elementos, y rellenar los 
+    10 últimos elementos con el valor 0.5. Mostrar los dos arreglos resultantes: el ordenado de 50 elementos 
+    y el combinado de 20.    
 */
 
-/*
+function ejercicio19() {
+    let arrA = [];
+    let arrB = [];    
+    llenarArreglo(arrA, 50, 100);
+    arrB = arrA.slice(0,20);
+    let arrAInsert = arrA.slice();// + de 20ms 
+    let arrABubble = arrA.slice();// - de 60ms
+    let arrASelection = arrA.slice();// - de 40ms
+    insertionSort(arrAInsert);
+    bubbleSort(arrABubble);
+    selectionSort(arrASelection);    
+    arrB.forEach(
+        (elem, n, arrB) => {
+            if (n < 10) {
+                arrB[n] = arrAInsert[n];
+            } else {
+                arrB[n] = 0.5;
+            }
+        }, arrB);
+    /*arrB = arrB.map((elem, n)=>{
+            if(n<10){
+                elem = arrAInsert[n];
+            } else {
+                elem = 0.5;
+            }
+        });*/
+    alert(`Arreglo A: [${arrA.toString()}]\n
+            Arreglo A ordenado por insercion: [${arrAInsert.toString()}]\n
+            Arreglo A ordenado por burbuja: [${arrABubble.toString()}]\n
+            Arreglo A ordenado por seleccion: [${arrASelection.toString()}]\n
+            Arreglo B: [${arrB.toString()}]`);
+}
 
-(a,)
+function insertionSort(arr) {
+    console.log("Comienza ordenamiento por insercion:");
+    console.time();
+    for (let i = 1; i < arr.length; i++) {
+        //tomo un elemento (empezando por el segundo)
+        console.log(`Comienza for en i = ${i}`)
+        let aux = arr[i];
+        console.log(`let aux = arr[${i}] = ${arr[i]}`);
+        //creo una variable j que guarda el indice anterior (siempre comienza uno antes que el for)
+        let j = i - 1;
+        console.log(`let j = ${i}-1 = ${i - 1}`);
+        //mientras la j sea no haya llegado al principio del arreglo y ese elemento arr[j] sea mayor que el elemento
+        //original (arr[i]) => hago avanzar una posicion en elemento arr[j] y voy a mirar el elemento anterior j-1
+        console.log(`Comienza ciclo while? (${j}>=0 && ${arr[j]}>${aux})`);
+        while (j >= 0 && arr[j] > aux) {
+            arr[j + 1] = arr[j];
+            console.log(`arr[${j + 1}] = ${arr[j]} = arr[${j}]`);
+            j = j - 1;
+            console.log(`j = j-1 = ${j - 1}`);
+        }
+        console.log(`Fin de ciclo while => arr[${j + 1}] = aux = ${aux}`)
+        //cuando llego al final de la iteracion, el primer elemento debe ser el mas chico de la lista
+        arr[j + 1] = aux;
+    }
+    console.log(`Final: [${arr.toString()}]`);
+    console.timeEnd();
+}
+
+function bubbleSort(arr) {
+    console.log("Comienza ordenamiento por burbuja:");
+    console.time();
+    //ciclo que recorre el arreglo
+    for (let i = 0; i < arr.length; i++) {
+        console.log(`Comienza for en i = ${i}`)
+        //ciclo que recorre el arrglo -1 - lo recorrido hasta el momento
+        for (let j = 0; j < arr.length - i - 1; j++) {
+            console.log(`Comienza for en j = ${j}`)
+            //si el elemento es mayor que el siguiente
+            console.log(`if(arr[${j}]>arr[${j + 1}]) => (${arr[j]}>${arr[j + 1]})`);
+            if (arr[j] > arr[j + 1]) {
+                //lo asigno a un auxiliar
+                console.log(`let aux = arr[j] = ${arr[j]}`)
+                let aux = arr[j];
+                //intercambio el elemento con el siguiente
+                console.log(`arr[j] = arr[j+1] = ${arr[j + 1]}`)
+                arr[j] = arr[j + 1];
+                //le asigno al siguiente el valor del auxiliar (arr[j] original)
+                console.log(`arr[j+1] = aux = ${aux}`)
+                arr[j + 1] = aux;
+            }
+        }
+    }
+    console.log(`Final: [${arr.toString()}]`);
+    console.timeEnd();
+    //el primer ciclo deberia dejar el mayor elemento en la ultima posicion, el segundo en anterior en la anteultima, etc
+}
+
+function selectionSort(arr) {
+    console.log("Comienza ordenamiento por seleccion:");
+    console.time();
+    //ciclo que recorre el arrego -1
+    for (let i = 0; i < arr.length - 1; i++) {
+        console.log(`Comienza for en i = ${i}`);
+        //selecciono el menor elemento
+        let menor = i;
+        console.log(`let menor = i = ${i}`);
+        //ciclo que recorre el arreglo a partir del segundo elemento
+        for (let j = i + 1; j < arr.length; j++) {
+            console.log(`Comienza for en j = ${j}`);
+            //si el elemento en el que estoy es mas chico que el elemento en la posicion 'minima'
+            console.log(`if(arr[${j}]<arr[${menor}]) => (${arr[j]}<${arr[menor]})`);
+            if (arr[j] < arr[menor]) {
+                //intercambio la posicion 'minima' por la nueva posicion
+                console.log(`menor = j = ${j}`);
+                menor = j;
+            }
+        }
+        //al finalizar reasigno los valores, pongo primero el numero mas pequeno del arreglo y es su lugar el que estaba primero, etc
+        let aux = arr[i];
+        console.log(`Reordenamos:\nlet aux = arr[i] = ${arr[i]}\narr[i] = arr[menor] = ${arr[menor]}\narr[menor] = aux = ${aux}`)
+        arr[i] = arr[menor];
+        arr[menor] = aux;
+    }
+    console.log(`Final: [${arr.toString()}]`);
+    console.timeEnd();
+}
+
+/*20 
+    Realizar un programa que obtenga la siguiente matriz [[3], [6], [9], [12], [15]] y devuelve y 
+    muestre el siguiente array [6, 9, 12, 15, 18]. 
+*/
+function ejercicio20(){
+    let arr = [[3], [6], [9], [12], [15]];
+    let retorno = masTres(arr);
+    alert(`Arreglo: [${arr.toString()}]\nArreglo procesado: [${retorno.toString()}]`);
+    return retorno;
+}
+
+function masTres(arr){
+    let retorno = arr.map((elem)=>{return elem[0]+3;});
+    return retorno;
+}
+
+/*21 
+    Escribir un programa para obtener un array de las propiedades de un objeto Persona. Las propiedades 
+    son nombre, edad, sexo ('H' hombre, 'M' mujer, 'O' otro), peso y altura. 
+*/
+function ejercicio21(){
+    let persona = new Persona('Mau',11,'M',3.5,0.35);
+    let retorno = parsePersonaEnArray(persona);
+    alert(`Objeto: new Persona('Mau',11,'M',3.5,0.35)\n Arreglo: [${retorno.toString()}]`);
+}
+function parsePersonaEnArray(persona){
+    let retorno = [];
+    for(let atributo in persona){
+        retorno.push(persona[atributo]);
+    }
+    return retorno;
+}
+
+/* 22. Escribir un programa de JavaScript que al clickear un botón muestre un mensaje a elección.
 
 */

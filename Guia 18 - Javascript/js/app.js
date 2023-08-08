@@ -283,6 +283,13 @@ class Libro {
 }
 function ejercicio14() {
     let libro = crearLibro();
+    let libroString = "";
+    for (const key in libro) {
+        if (Object.hasOwnProperty.call(libro, key)) {
+            libroString = libroString.concat(`${key}: ${libro[key]}, `)
+        }
+    }
+    alert(libroString);
 }
 function crearLibro(){
     let isbn, titulo, autor, numeroPags;
@@ -329,22 +336,52 @@ function ejercicio16(){
     let vector1 = [];
     let vector2 = [];
     let n = 5;
+    llenarArreglo(vector1,n,100);
+    llenarArreglo(vector2,n,100);
+    alert(`Vector1: [${vector1.toString()}]\nVector2: [${vector2.toString()}]`);
+}
+
+let llenarArreglo = (arr,n,max)=>{
     for(let i=0; i<n; i++){
-        vector1[i]=Math.floor((Math.random()*101));
-        vector2[i]=Math.floor((Math.random()*101));
+        arr[i]=Math.floor(Math.random()*(max+1));
     }
-    alert(`Vector1: [${vector1.toString}]\nVector2: [${vector2.toString}]`);
 }
 
 /*17 
     Realizar un programa que elimine los dos últimos elementos de un array. Mostrar el resultado
 */
 
-function ejercico17(){
-    
+function ejercicio17(){
+    let n = Number.parseInt(prompt("Ingresa el tamaño del arreglo (n>=1):"));
+    let arr = []; 
+    llenarArreglo(arr,n,100);
+    alert(`Original: [${arr.toString()}]`);
+    switch (n){
+        case 1:{
+            arr.pop();
+            break;
+        }
+        default:{
+            arr.splice(arr.length-2,2);            
+            break;
+        }
+    };    
+    alert(`Resultado: [${arr.toString()}]`);    
 }
 
-/* 18. A partir del siguiente array: var valores = [true, 5, false, "hola", "adios", 2]: a) Determinar cual de los dos elementos de texto es mayor b) Utilizando exclusivamente los dos valores booleanos del array, determinar los operadores necesarios para obtener un resultado true y otro resultado false c) Determinar el resultado de las cinco operaciones matemáticas realizadas con los dos elementos numéricos */
+/*18 
+    A partir del siguiente array: var valores = [true, 5, false, "hola", "adios", 2]: 
+    a) Determinar cual de los dos elementos de texto es mayor 
+    b) Utilizando exclusivamente los dos valores booleanos del array, determinar los operadores 
+    necesarios para obtener un resultado true y otro resultado false 
+    c) Determinar el resultado de las cinco operaciones matemáticas realizadas con los dos elementos 
+    numéricos 
+*/
+
+function ejercicio18(){
+    var valores = [true, 5, false, "hola", "adios", 2];
+    
+}
 
 /* 19. Realizar un programa en Java donde se creen dos arreglos: el primero será un arreglo A de 50 números reales, y el segundo B, un arreglo de 20 números, también reales. El programa deberá inicializar el arreglo A con números aleatorios y mostrarlo por pantalla. Luego, el arreglo A se debe ordenar de menor a mayor y copiar los primeros 10 números ordenados al arreglo B de 20 elementos, y rellenar los 10 últimos elementos con el valor 0.5. Mostrar los dos arreglos resultantes: el ordenado de 50 elementos y el combinado de 20.    */
 

@@ -1,0 +1,32 @@
+body{
+    margin: 5px;
+    padding: 3px;
+}
+li{
+    margin: 5px;
+    width: 100%;
+}
+.marcada{
+    background-color: coral;
+}
+
+#ejercicio22P,#ejercicio23P{
+    width: 400px;
+    border: 1px solid black;
+}
+
+.dentroLi{
+    display: flex;
+    width: 600px;
+    padding: 3px;
+    margin: 5px;
+}
+.canva{
+    width: fit-content;
+}
+#canvas{    
+    width: 600px; 
+    height: 600px;
+    border: 1px dotted cornflowerblue;
+}
+

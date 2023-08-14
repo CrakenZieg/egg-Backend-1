@@ -197,7 +197,7 @@ function ejercicio10() {
 
 let reversa = (frase) => {
     let fraseArr = frase.split("");
-    let retorno = fraseArr.reduce((a, b) => { return a + b });
+    let retorno = fraseArr.reduce((a, b) => { return b + a });
     /*let retorno = "";
     for (let i = 0; i < fraseArr.length; i++) {
         retorno = retorno.concat(fraseArr[fraseArr.length-1-i]);
@@ -206,7 +206,8 @@ let reversa = (frase) => {
 }
 
 /*11 
-    Escribir una función que reciba un String y devuelva la palabra más larga.  String Ejemplo: "Guia de JavaScript" Resultado esperado : "JavaScript"
+    Escribir una función que reciba un String y devuelva la palabra más larga.  
+    String Ejemplo: "Guia de JavaScript" Resultado esperado : "JavaScript"
 */
 
 function ejercicio11() {
@@ -379,8 +380,92 @@ function ejercicio17() {
 */
 
 function ejercicio18() {
-    var valores = [true, 5, false, "hola", "adios", 2];
-
+    let valores = [true, 5, false, "hola", "adios", 2];
+    let numberArr = [];
+    let booleanArr = [];
+    let stringArr = [];
+    for (let elem of valores) {
+        let tipo = clasificar(elem);
+        switch (tipo) {
+            case ('number'):
+                numberArr.push(elem);
+                break;
+            case ('boolean'):
+                booleanArr.push(elem);
+                break;
+            case ('string'):
+                stringArr.push(elem);
+                break;
+        }
+    }
+    largoString(stringArr);
+    mismoTipo(booleanArr);
+    mismoValor(booleanArr);
+    numOperaciones(numberArr);
+}
+function clasificar(e) {
+    return typeof e;
+}
+function mismoTipo(a) {
+    let retorno = true;
+    let tipo = typeof a[0];
+    for (let i = 0; i < a.length; i++) {
+        if (!retorno) {
+            break;
+        } else {
+            if (i == (a.length - 1)) {
+                retorno = (typeof a[0] == typeof a[i]);
+            } else {
+                retorno = (typeof a[i] == typeof a[i + 1]);
+            }
+        }
+    }
+    console.log(`El tipo de las variables es el mismo: ${retorno}${(retorno)?`(${tipo})`:""}`);
+    return retorno;
+}
+function mismoValor(a) {
+    let retorno = true;    
+    let valor = a[0];
+    for (let i = 0; i < a.length; i++) {
+        if (!retorno) {
+            break;
+        } else {
+            if (i == (a.length - 1)) {
+                retorno = a[i] == a[0];
+            } else {
+                retorno = a[i] == a[i+1];
+            }
+        }
+    }
+    console.log(`El valor de las variables es el mismo: ${retorno}${(retorno)?`(${valor})`:""}`);
+    return retorno;
+}
+function largoString(a) {
+    let retorno = "";
+    for (let str of a) {
+        if (str.length > retorno.length) {
+            retorno = str;
+        }
+    }
+    console.log(`El string mas largo es: ${retorno}`);
+    return retorno;
+}
+function numOperaciones(a) {
+    for (let i = 0; i < a.length; i++) {
+        if (i == a.length - 1) {
+            console.log(`${a[i]}+${a[0]}=${a[i]+a[0]}`);
+            console.log(`${a[i]}-${a[0]}=${a[i]-a[0]}`);
+            console.log(`${a[i]}*${a[0]}=${a[i]*a[0]}`);
+            console.log(`${a[i]}/${a[0]}=${a[i]/a[0]}`);            
+            console.log(`${a[i]}**${a[0]}=${a[i]**a[0]}`);
+        } else {
+            console.log(`${a[i]}+${a[i+1]}=${a[i]+a[i+1]}`);
+            console.log(`${a[i]}-${a[i+1]}=${a[i]-a[i+1]}`);
+            console.log(`${a[i]}*${a[i+1]}=${a[i]*a[i+1]}`);
+            console.log(`${a[i]}/${a[i+1]}=${a[i]/a[i+1]}`);            
+            console.log(`${a[i]}**${a[i+1]}=${a[i]**a[i+1]}`);            
+        }
+    }
 }
 
 /*19 
@@ -394,15 +479,15 @@ function ejercicio18() {
 
 function ejercicio19() {
     let arrA = [];
-    let arrB = [];    
+    let arrB = [];
     llenarArreglo(arrA, 50, 100);
-    arrB = arrA.slice(0,20);
+    arrB = arrA.slice(0, 20);
     let arrAInsert = arrA.slice();// + de 20ms 
     let arrABubble = arrA.slice();// - de 60ms
     let arrASelection = arrA.slice();// - de 40ms
     insertionSort(arrAInsert);
     bubbleSort(arrABubble);
-    selectionSort(arrASelection);    
+    selectionSort(arrASelection);
     arrB.forEach(
         (elem, n, arrB) => {
             if (n < 10) {
@@ -436,7 +521,7 @@ function insertionSort(arr) {
         //creo una variable j que guarda el indice anterior (siempre comienza uno antes que el for)
         let j = i - 1;
         console.log(`let j = ${i}-1 = ${i - 1}`);
-        //mientras la j sea no haya llegado al principio del arreglo y ese elemento arr[j] sea mayor que el elemento
+        //mientras la j no haya llegado al principio del arreglo y ese elemento arr[j] sea mayor que el elemento
         //original (arr[i]) => hago avanzar una posicion en elemento arr[j] y voy a mirar el elemento anterior j-1
         console.log(`Comienza ciclo while? (${j}>=0 && ${arr[j]}>${aux})`);
         while (j >= 0 && arr[j] > aux) {
@@ -516,15 +601,18 @@ function selectionSort(arr) {
     Realizar un programa que obtenga la siguiente matriz [[3], [6], [9], [12], [15]] y devuelve y 
     muestre el siguiente array [6, 9, 12, 15, 18]. 
 */
-function ejercicio20(){
+
+function ejercicio20() {
     let arr = [[3], [6], [9], [12], [15]];
     let retorno = masTres(arr);
     alert(`Arreglo: [${arr.toString()}]\nArreglo procesado: [${retorno.toString()}]`);
     return retorno;
 }
 
-function masTres(arr){
-    let retorno = arr.map((elem)=>{return elem[0]+3;});
+function masTres(arr) {
+    let retorno = arr.flat().map((elem) => { return elem + 3; });
+    //flat() sobre un arreglo devuelve el mismo arreglo sin 'profundidad', es decir, si le pasas una matriz 
+    //de n*m te devuelve un vector de n*m elementos
     return retorno;
 }
 
@@ -532,19 +620,90 @@ function masTres(arr){
     Escribir un programa para obtener un array de las propiedades de un objeto Persona. Las propiedades 
     son nombre, edad, sexo ('H' hombre, 'M' mujer, 'O' otro), peso y altura. 
 */
-function ejercicio21(){
-    let persona = new Persona('Mau',11,'M',3.5,0.35);
+
+function ejercicio21() {
+    let persona = new Persona('Mau', 11, 'M', 3.5, 0.35);
     let retorno = parsePersonaEnArray(persona);
     alert(`Objeto: new Persona('Mau',11,'M',3.5,0.35)\n Arreglo: [${retorno.toString()}]`);
 }
-function parsePersonaEnArray(persona){
+function parsePersonaEnArray(persona) {
     let retorno = [];
-    for(let atributo in persona){
+    for (let atributo in persona) {
         retorno.push(persona[atributo]);
     }
     return retorno;
 }
 
-/* 22. Escribir un programa de JavaScript que al clickear un botón muestre un mensaje a elección.
-
+/*22 
+    Escribir un programa de JavaScript que al clickear un botón muestre un mensaje a elección.
 */
+
+function ejercicio22() {
+    let frase = document.getElementById('ejercicio22').value;
+    document.getElementById('ejercicio22P').innerHTML = frase;
+}
+
+/*23
+    Resalte todas las palabras de más de 8 caracteres en el texto del párrafo 
+    (con un fondo amarillo, por ejemplo)  
+*/
+
+function ejercicio23() {
+    let contenido = document.getElementById('ejercicio23Area').value;
+    let arrContenido = contenido.split(' ');
+    for (let i = 0; i < arrContenido.length; i++) {
+        if (arrContenido[i].length > 8) {
+            arrContenido[i] = marcar(arrContenido[i]);
+        }
+    }
+    contenido = arrContenido.join(' ');
+    document.getElementById('ejercicio23P').innerHTML = contenido;
+}
+
+function marcar(palabra) {
+    return `<span class="marcada">${palabra}</span>`;
+}
+
+/*24
+    Escribir un programa de JavaScript que a través de un formulario calcule el 
+    radio de un circulo y lo muestre en el HTML. 
+*/
+
+function ejercicio24A() {
+    let area = (document.getElementById('ejercicio24').value) ? document.getElementById('ejercicio24').value : 50;
+    let r = Math.sqrt(area / Math.PI);
+    ejercicio24(r);
+}
+function ejercicio24P() {
+    let perimetro = (document.getElementById('ejercicio24').value) ? document.getElementById('ejercicio24').value : 50;
+    let r = perimetro / (2 * Math.PI);
+    ejercicio24(r);
+}
+
+function ejercicio24(r) {
+    let canvas = document.getElementById('ejercicio24Canvas');
+    let contexto = canvas.getContext("2d");
+    contexto.clearRect(0, 0, canvas.width, canvas.height);
+    let centroX = canvas.width / 2;
+    let centroy = canvas.height / 2;
+    contexto.beginPath();
+    contexto.arc(centroX, centroy, r, 0, (2 * Math.PI), true);
+    contexto.lineWidth = 2;
+    contexto.strokeStyle = "black";
+    contexto.stroke();
+    let texto = `El radio es ${r}`;
+    contexto.font = '10pt Franklin Gothic thin';
+    contexto.fillStyle = "black";
+    contexto.fillText(texto, 20, 20);
+}
+
+/*25
+    Escriba una función de JavaScript para obtener los valores de Nombre y 
+    Apellido del siguiente formulario    
+*/
+
+function getFormValores() {
+    let nombre = document.getElementByName('nombre');
+    let apellido = document.getElementByName('apellido');
+    document.getElementById('ejercicio25P').innerHTML = `Nombre: ${nombre} ${apellido}`;
+}

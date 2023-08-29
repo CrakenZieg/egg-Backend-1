@@ -19,7 +19,7 @@ const UserForm = () => {
     const handlePasswordConfirmation = (input) => {
         setPasswordConfirmation(input.target.value);
     }
-    /* cada vez que cambia passwordConfirmation lo compara con el valor password de form y settea sin son iguales */
+    /* cada vez que cambia passwordConfirmation lo compara con el valor password de form y settea si son iguales */
     useEffect(() => {
         const { password } = form;
         setAreEquals(password === passwordConfirmation && passwordConfirmation.lenght!==0)        

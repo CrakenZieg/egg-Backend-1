@@ -26,9 +26,7 @@ const Footer = () => {
                 </div>
 
                 <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li className="ms-3"><a className="text-body-secondary" href="#"><img className="border border-white rounded-circle" src="./assets/eu.png" width="40px" height="auto" alt="eu" /></a></li>
-                    <li className="ms-3"><a className="text-body-secondary" href="#"><img className="border border-white rounded-circle" src="./assets/eu.png" width="40px" height="auto" alt="eu" /></a></li>
-                    <li className="ms-3"><a className="text-body-secondary" href="#"><img className="border border-white rounded-circle" src="./assets/eu.png" width="40px" height="auto" alt="eu" /></a></li>
+                    <li className="ms-3"><a className="text-body-secondary" href="https://www.thecocktaildb.com/"><i className="fa fa-glass" aria-hidden="true"></i> https://www.thecocktaildb.com/</a></li>
                 </ul>
             </footer>
         </div>

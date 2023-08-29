@@ -14,7 +14,7 @@ export class Main extends Component {
                             <img src="https://media.giphy.com/media/TcdpZwYDPlWXC/giphy.gif" alt="Gandalf" />
                             <p className="lead text-body-secondary"><i>"A drink is never late nor is it early, it arrives precisely when it needs to"</i><br />Gandalf the Grey</p>
                             <p className="btn btn-success my-2">
-                                <Link to={`/Bebida/0`} className="nav-link">
+                                <Link to={`/aleatoria`} className="nav-link">
                                     Bebida Aleatoria
                                 </Link>
                             </p>

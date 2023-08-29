@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import BebidasService from '../services/BebidaService';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Bebida = () => {
+export default function Aleatoria() {
 
-    const { id } = useParams();
     const [item, setItem] = useState({});
     const [links, setLinks] = useState([]);
 
     useEffect(() => {
-        BebidasService.getBebidaPorId(id)
+        BebidasService.getBebidaAleatoria()
             .then((response) => { setItem(response.drinks[0]); })
             .catch((error) => { console.log(error) });
-    }, [id]);
+    }, []);
 
     useEffect(() => {
         let i = 1;
@@ -57,5 +56,3 @@ const Bebida = () => {
         </div>
     )
 }
-
-export default Bebida;

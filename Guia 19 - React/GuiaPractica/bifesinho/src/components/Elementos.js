@@ -5,29 +5,29 @@ import BebidasService from '../services/BebidaService';
 export default function Elementos() {
 
     const [items, setItems] = useState([]);
-    const [alea, setAlea] = useState(Math.floor(Math.random()*10));
+    const [lista, setLista] = useState([
+        Math.floor(Math.random() * 5), Math.floor(Math.random() * 5) + 5, Math.floor(Math.random() * 5) + 10, Math.floor(Math.random() * 5) + 15,
+        Math.floor(Math.random() * 5) + 20, Math.floor(Math.random() * 5) + 25, Math.floor(Math.random() * 5) + 30, Math.floor(Math.random() * 5) + 35,
+        Math.floor(Math.random() * 5) + 40, Math.floor(Math.random() * 5) + 45, Math.floor(Math.random() * 5) + 50, Math.floor(Math.random() * 5) + 55,
+        Math.floor(Math.random() * 5) + 60, Math.floor(Math.random() * 5) + 65, Math.floor(Math.random() * 5) + 70, Math.floor(Math.random() * 5) + 75,
+        Math.floor(Math.random() * 5) + 80, Math.floor(Math.random() * 5) + 85, Math.floor(Math.random() * 5) + 90, Math.floor(Math.random() * 5) + 95,
+    ])
 
     useEffect(() => {
         BebidasService.getBebida()
-            .then((response) => { setItems(response.drinks); })            
-            .catch((error) => { console.log(error) });                    
-        }, []);   
-        
-    /* 
-    setItems(items.concat(response.drinks)) 
-    
-    .then(()=>{
-        for(let i=0; i<15;i++){
-        seleccion.push(items[Math.floor(Math.random()*100)]);
-        console.log(seleccion)
-    }})
-    */
+            .then((response) => {
+                setItems(
+                    lista.map((e) => { return response.drinks[e] })
+                );
+            })
+            .catch((error) => { console.log(error) });
+    }, []);
 
-    const listaMain = items.filter(elem=>(elem.idDrink%alea===0)).map((e)=>{return <Elemento elem={e.idDrink} key={e.id}/>}); 
-    
+    const listaMain = items.filter((e)=>(e!=null&&e!==undefined)).map((e) => { return <Elemento elem={e.idDrink} key={e.idDrink} /> });
+
     return (
         <div className="row row-cols-2 row-cols-md-3 g-4">
-           {listaMain}
+            {listaMain}
         </div>
     )
 }

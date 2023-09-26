@@ -43,7 +43,7 @@ export default function Ingrediente() {
                     <button type="button" className="btn btn-outline-dark me-2"><i className="fa fa-arrow-circle-left" aria-hidden="true"></i> Volver</button>
                 </Link>
             </div>
-            <div className="row py-lg-3 row-cols-2 row-cols-md-3 g-4">
+            <div className="row py-lg-3 row-cols-2 row-cols-md-4 g-4">
                 {listaIngredientes}
             </div>
         </section>

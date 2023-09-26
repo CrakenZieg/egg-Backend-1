@@ -26,7 +26,7 @@ export default function Elementos() {
     const listaMain = items.filter((e)=>(e!=null&&e!==undefined)).map((e) => { return <Elemento elem={e.idDrink} key={e.idDrink} /> });
 
     return (
-        <div className="row row-cols-2 row-cols-md-3 g-4">
+        <div className="row row-cols-2 row-cols-md-4 g-4">
             {listaMain}
         </div>
     )

@@ -1,5 +1,5 @@
 
-package com.Egg.EggNews.controller;
+package com.Egg.EggNews.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(
                 (requests) -> requests                       
-                        .requestMatchers("/","/noticia/**","/panelAdmin/**","/login").permitAll()
+                        .requestMatchers("/","/noticia/**",
+                        "/panelAdmin/**","/login","/styles/**",
+                        "/images/**"
+                        ).permitAll()
         );
         return http.build();
     }

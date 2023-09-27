@@ -1,5 +1,5 @@
 
-package com.Egg.EggNews.controller;
+package com.Egg.EggNews.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

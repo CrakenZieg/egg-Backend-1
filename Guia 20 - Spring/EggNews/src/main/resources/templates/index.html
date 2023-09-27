@@ -7,16 +7,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>index</div>
-        <ul>
-            <li th:each="noticia : ${noticias}">
-                Id: [[${noticia.id}]]
-                <ul>
-                    <li>[[${noticia.titulo}]]</li>
-                    <li>[[${noticia.cuerpo}]]</li>
-                </ul>
-            </li>
-        </ul>
+        <nav class="navbar bg-body-tertiary" th:replace="~{fragmentos/headYFoot :: header}"></nav>   
+        <section>
+            <div class="container p-5">
+                <figure class="text-end">
+                    <blockquote class="blockquote">
+                      <h1>NotiEgg</h1>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                      Para salir <cite title="Source Title">del huevo</cite>
+                    </figcaption>
+                </figure>
+            </div>            
+        </section>
+        <section>
+            <div class="container-fluid">
+                <div class="row row-cols px-5">                    
+                    <div class="col" th:each="noticia : ${noticias}">
+                        <div class="card">
+                            <img src="https://random.imagecdn.app/300/250" class="card-img-top" alt="alternativo"/>
+                            <div class="card-body">
+                              <h5 class="card-title">[[${noticia.titulo}]]</h5>
+                              <p class="card-text text-truncate">[[${noticia.cuerpo}]]</p>
+                              <a th:href="@{/noticia/}+${noticia.id}" class="btn btn-outline-secondary">Leer más...</a>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </section>        
         <script th:replace="~{fragmentos/headYFoot :: script}"></script>
     </body>
 </html>

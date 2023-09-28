@@ -31,6 +31,10 @@
                               <p class="card-text text-truncate">[[${noticia.cuerpo}]]</p>
                               <a th:href="@{/noticia/}+${noticia.id}" class="btn btn-outline-secondary">Leer más...</a>
                             </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <div>[[${noticia.creada}]]</div>
+                                <div>[[${noticia.autor}]]</div>
+                            </div>
                           </div>
                     </div>
                 </div>

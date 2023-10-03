@@ -23,6 +23,24 @@
                         <li class="nav-item">
                             <a class="nav-link text-warning" aria-current="page" th:href="@{/}">Inicio</a>
                         </li>
+                        <li class="nav-item" sec:authorize="isAnonymous()">
+                            <a class="nav-link text-warning" th:href="@{/login}">Login</a>
+                        </li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle text-warning" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span sec:authentication="name">Usuario</span>
+                                </button>                                
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" th:href="@{/usuario}">Agregar</a></li>
+                                    <li>
+                                        <form method="POST" th:action="@{/logout}">
+                                            <a class="dropdown-item" href="#" onclick="this.parentNode.submit();">Logout</a>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                     <div id="busqueda" class="input-group" role="search" data-bs-theme="dark">
                         <input type="text" class="form-control" aria-label="Buscar noticia"/>

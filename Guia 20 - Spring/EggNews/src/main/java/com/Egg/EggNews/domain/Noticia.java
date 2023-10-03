@@ -6,11 +6,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import java.io.Serializable;
@@ -34,9 +33,9 @@ public class Noticia implements Serializable{
     private String titulo;
     @NotEmpty
     private String cuerpo;
-    @NotEmpty
+    @NotEmpty    
     @Column(name="id_autor")
-    private Usuario autor;
+    private long autor;
     
     @PrePersist
     protected void onCreate() {

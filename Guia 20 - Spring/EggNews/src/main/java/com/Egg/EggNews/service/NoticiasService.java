@@ -16,7 +16,7 @@ public class NoticiasService {
     
     @Transactional(readOnly = true)
     public List<Noticia> todasLasNoticias(){
-        return noticiasDAO.findAll();
+        return noticiasDAO.findAllByOrderByCreadaAsc();
     }
     
     @Transactional(readOnly = true)

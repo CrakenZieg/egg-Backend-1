@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/panelAdmin")
+@RequestMapping("/usuario")
 public class AdminController {
     
     @Autowired
     private NoticiasService noticiasService;
     
     @GetMapping(value = "/")
-    public String admin(){
-        return "panelAdmin";
+    public String usuario(){
+        return "usuario";
     }
     
     

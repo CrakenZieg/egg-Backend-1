@@ -7,7 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <nav class="navbar bg-body-tertiary" th:replace="~{fragmentos/headYFoot :: header}"></nav>  
         <div>Acceso denegado. No tienes permiso para ver esta página o ejecutar la acción</div>
+        <div>Si sos un usuario registrado y ves esta página debés ponerte en contacto con el administrador del sistema</div>
         <a th:href="@{/}">Regresar</a>
+        <script th:replace="~{fragmentos/headYFoot :: script}"></script>
     </body>
 </html>

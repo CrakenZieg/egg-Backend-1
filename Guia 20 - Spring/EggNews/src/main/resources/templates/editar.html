@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="~{fragmentos/headYFoot :: head}">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <form class="form-group" th:action="@{usuario/guardar}" th:object="${noticia}"
+              method="post" class="was-validated">
+            <input type="hidden" name="id" th:field="*{id}"/>
+            <input type="hidden" name="autor" th:field="*{autor}"/>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Editar</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="card-body" for="titulo">Titulo:</label>
+                                    <input type="text" class="form-control" name="titulo" id="titulo"
+                                           required="true" th:field="*{titulo}" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="card-body" for="cuerpo">Cuerpo:</label>
+                                    <textarea class="form-control" name="cuerpo" id="cuerpo" rows="3"
+                                              required="true" th:field="*{cuerpo}">                                        
+                                    </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label >Alta</label>
+                                    <input type="checkbox" value="*{alta}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script th:replace="~{fragmentos/headYFoot :: script}"></script>
+    </body>
+</html>

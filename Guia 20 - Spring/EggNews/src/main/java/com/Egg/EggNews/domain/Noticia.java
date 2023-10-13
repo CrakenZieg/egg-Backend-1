@@ -24,9 +24,9 @@ public class Noticia implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name="id_noticia")
-    private long id;
+    private String id;
     private LocalDate creada;
     private LocalDate editada;
     @NotEmpty
@@ -35,12 +35,14 @@ public class Noticia implements Serializable{
     private String cuerpo;
     @NotEmpty    
     @Column(name="id_autor")
-    private long autor;
+    private String autor;
+    private boolean alta;
     
     @PrePersist
     protected void onCreate() {
         creada = LocalDate.now();
         editada = LocalDate.now();
+        alta = true;
     }
     
     @PreUpdate

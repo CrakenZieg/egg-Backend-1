@@ -29,7 +29,10 @@ public class UsuariosService implements UserDetailsService {
         
         if(usuario==null){
             throw new UsernameNotFoundException(username);
+        } else if(!usuario.isAlta()){
+            throw new UsernameNotFoundException(username);
         }
+                
         var roles = new ArrayList<GrantedAuthority>();
         for (Rol rol : usuario.getRoles()) {
             roles.add(new SimpleGrantedAuthority(rol.getNombre()));
@@ -37,5 +40,10 @@ public class UsuariosService implements UserDetailsService {
         return new User(usuario.getUsername(), usuario.getPassword(), roles);
     }
     
+    @Transactional(readOnly = true)
+    public String getId(String username){        
+        Usuario usuario = usuariosDAO.findByUsername(username);        
+        return usuario.getIdUsuario();
+    }
     
 }

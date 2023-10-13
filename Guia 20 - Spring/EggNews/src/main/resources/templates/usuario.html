@@ -8,7 +8,88 @@
     </head>
     <body>
         <nav class="navbar bg-body-tertiary" th:replace="~{fragmentos/headYFoot :: header}"></nav>   
-        <div>panelAdmin</div>
+
+        <div class="accordion" id="agregarFormulario">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Agregar noticia
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#agregarFormulario">
+                    <div class="accordion-body">
+                        <form class="form-group was-validated" th:action="@{usuario/guardar}" th:object="${noticia}"
+                              method="post">
+                            <input type="hidden" name="autor" value="${idAutor}"/>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>Editar</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label class="card-body" for="titulo">Titulo:</label>
+                                                    <input type="text" class="form-control" name="titulo" id="titulo"
+                                                           required="true"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="card-body" for="cuerpo">Cuerpo:</label>
+                                                    <textarea class="form-control" name="cuerpo" id="cuerpo" rows="3"
+                                                              required="true">                                        
+                                                    </textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label >Alta</label>
+                                                    <input type="checkbox" value="*{alta}"/>
+                                                </div>
+                                                <button class="btn btn-outline-success" type="submit">Agregar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <table class="table table-stryped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Titulo</th>
+                                <th>Cuerpo</th>
+                                <th>#</th>
+                                <th sec:authorize="hasRole('ROLE_ADMIN')">#</th>                                        
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="noticia, contador : ${noticias}">
+                                <td>[[${noticia.count}]]</td>
+                                <td>[[${noticia.titulo}</td>
+                                <td>[[${noticia.cuerpo}]]</td>
+                                <td>
+                                    <a sec:authorize="hasRole('ROLE_ADMIN') || ${autor} == ${noticia.autor}" th:href="@{usuario/editar/}+${noticia.id}"
+                                       class="btn btn-secondary">
+                                        <i class="fas fa-angle-double-right"></i> Editar
+                                    </a> 
+                                </td>
+                                <td>
+                                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{usuario/eliminar(noticia=${noticia.id})}"
+                                       class="btn btn-dark">
+                                        <i class="fas fa-angle-double-right"></i> Eliminar
+                                    </a> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         <script th:replace="~{fragmentos/headYFoot :: script}"></script>
     </body>
 </html>
